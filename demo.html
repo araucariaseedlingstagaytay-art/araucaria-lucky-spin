@@ -64,6 +64,7 @@ h1 {
   font-size: 11px;
 }
 
+/* Desktop wheel size adjusted */
 .wheel-area {
   position: relative;
   width: min(78vw, 450px);
@@ -253,5 +254,573 @@ canvas {
 
     <a
       class="join-button"
-      href="https://docs.google.com/forms/d/e/1FAIpQLSeDtdLKbHWSOHmUPxGZynijlT
+      href="https://docs.google.com/forms/d/e/1FAIpQLSeDtdLKbHWSOHmUPxGZynijlTsrnRmBvW6_3mb9V15BG7PiQg/viewform"
+      target="_blank"
+      rel="noopener noreferrer">
+      🎟️ JOIN THE ACTUAL PROMO
+    </a>
+
+  </div>
+
+  <div class="notice">
+    This public demo does not collect names, mobile numbers,
+    Facebook accounts, Lucky Codes, or customer information.
+  </div>
+
+  <div class="footer">
+    © Araucaria Seedlings Tagaytay
+  </div>
+
+</div>
+
+
+<script>
+
+const canvas =
+  document.getElementById("wheel");
+
+const ctx =
+  canvas.getContext("2d");
+
+const spinButton =
+  document.getElementById("spinButton");
+
+const resultBox =
+  document.getElementById("result");
+
+
+/* FINAL DEMO PRIZES */
+
+const prizes = [
+
+  "+15 FREE SEEDLINGS",
+  "+30 FREE SEEDLINGS",
+  "+50 FREE SEEDLINGS",
+  "+100 FREE SEEDLINGS",
+  "+150 FREE SEEDLINGS",
+  "+200 FREE SEEDLINGS",
+  "+250 FREE SEEDLINGS",
+  "+500 FREE SEEDLINGS"
+
+];
+
+
+const segmentCount =
+  prizes.length;
+
+const segmentAngle =
+  (Math.PI * 2) /
+  segmentCount;
+
+let rotation = 0;
+
+let spinning = false;
+
+let audioContext = null;
+
+
+/* =========================
+   DRAW WHEEL
+========================= */
+
+function drawWheel() {
+
+  const center =
+    canvas.width / 2;
+
+  const radius =
+    canvas.width / 2 - 8;
+
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  for (
+    let i = 0;
+    i < segmentCount;
+    i++
+  ) {
+
+    const start =
+      rotation +
+      i * segmentAngle;
+
+    const end =
+      start +
+      segmentAngle;
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      center,
+      center
+    );
+
+    ctx.arc(
+      center,
+      center,
+      radius,
+      start,
+      end
+    );
+
+    ctx.closePath();
+
+
+    ctx.fillStyle =
+      i % 2 === 0
+        ? "#b32929"
+        : "#17643a";
+
+    ctx.fill();
+
+
+    ctx.lineWidth = 4;
+
+    ctx.strokeStyle =
+      "#f5d76e";
+
+    ctx.stroke();
+
+
+    /*
+      Prize text is positioned
+      safely outside the center.
+    */
+
+    ctx.save();
+
+    ctx.translate(
+      center,
+      center
+    );
+
+    ctx.rotate(
+      start +
+      segmentAngle / 2
+    );
+
+    ctx.textAlign =
+      "right";
+
+    ctx.textBaseline =
+      "middle";
+
+    ctx.fillStyle =
+      "#ffffff";
+
+
+    let fontSize = 21;
+
+
+    if (
+      prizes[i].length >= 19
+    ) {
+
+      fontSize = 19;
+
+    }
+
+
+    ctx.font =
+      "bold " +
+      fontSize +
+      "px Arial";
+
+
+    ctx.fillText(
+      prizes[i],
+      radius - 15,
+      0
+    );
+
+
+    ctx.restore();
+
+  }
+
+
+  /* Center circle */
+
+  ctx.beginPath();
+
+  ctx.arc(
+    center,
+    center,
+    45,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fillStyle =
+    "#17643a";
+
+  ctx.fill();
+
+  ctx.lineWidth = 5;
+
+  ctx.strokeStyle =
+    "#f5d76e";
+
+  ctx.stroke();
+
+}
+
+
+/* =========================
+   AUDIO
+========================= */
+
+function startAudio() {
+
+  try {
+
+    const Audio =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    if (!Audio)
+      return;
+
+
+    if (!audioContext) {
+
+      audioContext =
+        new Audio();
+
+    }
+
+
+    if (
+      audioContext.state ===
+      "suspended"
+    ) {
+
+      audioContext.resume();
+
+    }
+
+  } catch (error) {
+
+    audioContext = null;
+
+  }
+
+}
+
+
+function tickSound(
+  frequency = 190,
+  volume = 0.045,
+  duration = 0.035
+) {
+
+  if (!audioContext)
+    return;
+
+
+  try {
+
+    const oscillator =
+      audioContext.createOscillator();
+
+    const gain =
+      audioContext.createGain();
+
+
+    oscillator.type =
+      "square";
+
+    oscillator.frequency.value =
+      frequency;
+
+
+    gain.gain.setValueAtTime(
+      volume,
+      audioContext.currentTime
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      audioContext.currentTime +
+      duration
+    );
+
+
+    oscillator.connect(gain);
+
+    gain.connect(
+      audioContext.destination
+    );
+
+
+    oscillator.start();
+
+    oscillator.stop(
+      audioContext.currentTime +
+      duration
+    );
+
+  } catch (error) {
+
+    /* Sound is optional. */
+
+  }
+
+}
+
+
+function winnerSound() {
+
+  if (!audioContext)
+    return;
+
+
+  const notes = [
+    523.25,
+    659.25,
+    783.99,
+    1046.50
+  ];
+
+
+  notes.forEach(
+    (frequency, index) => {
+
+      setTimeout(
+        () => {
+
+          tickSound(
+            frequency,
+            0.09,
+            0.14
+          );
+
+        },
+        index * 120
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================
+   SPIN
+========================= */
+
+function spinWheel() {
+
+  if (spinning)
+    return;
+
+
+  startAudio();
+
+
+  spinning = true;
+
+  spinButton.disabled =
+    true;
+
+
+  resultBox.textContent =
+    "SPINNING... 🎡";
+
+
+  const extraSpins =
+    7 +
+    Math.floor(
+      Math.random() * 3
+    );
+
+
+  const winningIndex =
+    Math.floor(
+      Math.random() *
+      segmentCount
+    );
+
+
+  const pointerAngle =
+    -Math.PI / 2;
+
+
+  const targetAngle =
+    pointerAngle -
+    (winningIndex + 0.5) *
+    segmentAngle;
+
+
+  const currentNormalized =
+    rotation %
+    (Math.PI * 2);
+
+
+  let difference =
+    targetAngle -
+    currentNormalized;
+
+
+  while (
+    difference < 0
+  ) {
+
+    difference +=
+      Math.PI * 2;
+
+  }
+
+
+  const finalRotation =
+    rotation +
+    extraSpins *
+    Math.PI * 2 +
+    difference;
+
+
+  const startRotation =
+    rotation;
+
+
+  const duration =
+    7200;
+
+
+  const startTime =
+    performance.now();
+
+
+  let lastTick =
+    -1;
+
+
+  function animate(now) {
+
+    const elapsed =
+      now -
+      startTime;
+
+
+    const progress =
+      Math.min(
+        elapsed / duration,
+        1
+      );
+
+
+    const eased =
+      1 -
+      Math.pow(
+        1 - progress,
+        5
+      );
+
+
+    rotation =
+      startRotation +
+      (
+        finalRotation -
+        startRotation
+      ) *
+      eased;
+
+
+    drawWheel();
+
+
+    const tickPosition =
+      Math.floor(
+        rotation /
+        segmentAngle
+      );
+
+
+    if (
+      tickPosition !==
+      lastTick
+    ) {
+
+      lastTick =
+        tickPosition;
+
+
+      const remaining =
+        1 - progress;
+
+
+      tickSound(
+        150 +
+        remaining * 100,
+
+        0.025 +
+        remaining * 0.045,
+
+        0.035
+      );
+
+    }
+
+
+    if (
+      progress < 1
+    ) {
+
+      requestAnimationFrame(
+        animate
+      );
+
+    } else {
+
+      rotation =
+        finalRotation;
+
+      drawWheel();
+
+
+      spinning =
+        false;
+
+      spinButton.disabled =
+        false;
+
+
+      resultBox.textContent =
+        prizes[winningIndex];
+
+
+      winnerSound();
+
+    }
+
+  }
+
+
+  requestAnimationFrame(
+    animate
+  );
+
+}
+
+
+spinButton.addEventListener(
+  "click",
+  spinWheel
+);
+
+
+drawWheel();
+
+</script>
+
+</body>
+</html>
 ```
