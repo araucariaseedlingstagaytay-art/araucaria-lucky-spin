@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,182 +7,185 @@
 <title>Araucaria Lucky Spin — Demo</title>
 
 <style>
-  * {
-    box-sizing: border-box;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at top, #245c3b, #0b2819 70%);
-    color: white;
-    text-align: center;
-    padding: 20px;
-  }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at top, #2d7048, #0b2819 72%);
+  color: white;
+  text-align: center;
+  padding: 16px;
+}
 
-  .container {
-    width: 100%;
-    max-width: 650px;
-    margin: auto;
-  }
+.container {
+  width: 100%;
+  max-width: 650px;
+  margin: auto;
+}
 
-  .brand {
-    font-size: 14px;
-    letter-spacing: 2px;
-    margin-top: 5px;
-    opacity: 0.9;
-  }
+.brand {
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-top: 4px;
+  opacity: 0.9;
+}
 
-  h1 {
-    margin: 8px 0 4px;
-    font-size: clamp(28px, 7vw, 46px);
-  }
+h1 {
+  margin: 6px 0 2px;
+  font-size: clamp(27px, 7vw, 44px);
+}
 
-  .subtitle {
-    margin: 0 auto 16px;
-    font-size: 15px;
-    opacity: 0.9;
-  }
+.subtitle {
+  margin: 0 auto 12px;
+  font-size: 14px;
+  opacity: 0.9;
+}
 
-  .demo-banner {
-    background: #ffd54a;
-    color: #222;
-    font-weight: bold;
-    border-radius: 12px;
-    padding: 12px;
-    margin: 12px auto 20px;
-    max-width: 520px;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.25);
-  }
+.demo-banner {
+  background: #ffd54a;
+  color: #222;
+  font-weight: bold;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 10px auto 17px;
+  max-width: 530px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.25);
+  line-height: 1.35;
+}
 
-  .wheel-area {
-    position: relative;
-    width: min(88vw, 520px);
-    aspect-ratio: 1 / 1;
-    margin: 10px auto 20px;
-  }
+.demo-banner small {
+  font-weight: normal;
+  font-size: 11px;
+}
 
-  canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border-radius: 50%;
-    box-shadow:
-      0 0 0 8px #e8c766,
-      0 0 0 12px #6f4520,
-      0 15px 35px rgba(0,0,0,0.45);
-    background: white;
-  }
+.wheel-area {
+  position: relative;
+  width: min(88vw, 520px);
+  aspect-ratio: 1 / 1;
+  margin: 8px auto 18px;
+}
 
-  .pointer {
-    position: absolute;
-    top: -13px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 22px solid transparent;
-    border-right: 22px solid transparent;
-    border-top: 48px solid #d62828;
-    filter: drop-shadow(0 3px 3px rgba(0,0,0,0.4));
-    z-index: 5;
-  }
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 7px #e8c766,
+    0 0 0 11px #6f4520,
+    0 15px 35px rgba(0,0,0,0.45);
+  background: white;
+}
 
-  .center-button {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    border: 6px solid #e8c766;
-    background: #17643a;
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 4;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.35);
-  }
+.pointer {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 21px solid transparent;
+  border-right: 21px solid transparent;
+  border-top: 46px solid #d62828;
+  filter: drop-shadow(0 3px 3px rgba(0,0,0,0.4));
+  z-index: 5;
+}
 
-  .center-button:active {
-    transform: translate(-50%, -50%) scale(0.96);
-  }
+.center-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 6px solid #e8c766;
+  background: #17643a;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 4;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.35);
+}
 
-  .center-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
+.center-button:active {
+  transform: translate(-50%, -50%) scale(0.96);
+}
 
-  .result {
-    min-height: 76px;
-    margin: 15px auto;
-    padding: 15px;
-    max-width: 520px;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-  }
+.center-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
-  .result-title {
-    font-size: 13px;
-    opacity: 0.8;
-  }
+.result {
+  min-height: 78px;
+  margin: 12px auto;
+  padding: 13px;
+  max-width: 530px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+}
 
-  .result-value {
-    font-size: clamp(22px, 6vw, 34px);
-    font-weight: bold;
-    color: #ffd54a;
-    margin-top: 5px;
-  }
+.result-title {
+  font-size: 12px;
+  opacity: 0.8;
+}
 
-  .join-box {
-    margin: 22px auto 10px;
-    padding: 20px;
-    border-radius: 16px;
-    background: rgba(0,0,0,0.22);
-  }
+.result-value {
+  font-size: clamp(21px, 5.5vw, 32px);
+  font-weight: bold;
+  color: #ffd54a;
+  margin-top: 5px;
+}
 
-  .join-box h2 {
-    margin: 0 0 8px;
-    font-size: 22px;
-  }
+.join-box {
+  margin: 20px auto 8px;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.23);
+}
 
-  .join-box p {
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 15px;
-  }
+.join-box h2 {
+  margin: 0 0 7px;
+  font-size: 21px;
+}
 
-  .join-button {
-    display: inline-block;
-    text-decoration: none;
-    background: #ffd54a;
-    color: #222;
-    font-weight: bold;
-    padding: 13px 22px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  }
+.join-box p {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0 0 14px;
+}
 
-  .join-button:hover {
-    transform: translateY(-1px);
-  }
+.join-button {
+  display: inline-block;
+  text-decoration: none;
+  background: #ffd54a;
+  color: #222;
+  font-weight: bold;
+  padding: 12px 21px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
 
-  .notice {
-    font-size: 12px;
-    opacity: 0.7;
-    margin: 18px auto 5px;
-    line-height: 1.5;
-  }
+.notice {
+  font-size: 11px;
+  opacity: 0.7;
+  margin: 15px auto 5px;
+  line-height: 1.5;
+}
 
-  .footer {
-    margin-top: 20px;
-    font-size: 12px;
-    opacity: 0.55;
-  }
+.footer {
+  margin-top: 17px;
+  font-size: 11px;
+  opacity: 0.5;
+}
 </style>
 </head>
 
@@ -191,12 +193,14 @@
 
 <div class="container">
 
-  <div class="brand">ARAUCARIA SEEDLINGS TAGAYTAY</div>
+  <div class="brand">
+    ARAUCARIA SEEDLINGS TAGAYTAY
+  </div>
 
   <h1>🎡 Lucky Spin</h1>
 
   <p class="subtitle">
-    Try the wheel and see what luck brings! 🌱
+    Try your luck and see what the wheel brings! 🌱
   </p>
 
   <div class="demo-banner">
@@ -209,19 +213,32 @@
 
     <div class="pointer"></div>
 
-    <canvas id="wheel" width="600" height="600"></canvas>
+    <canvas
+      id="wheel"
+      width="600"
+      height="600">
+    </canvas>
 
-    <button id="spinButton" class="center-button">
+    <button
+      id="spinButton"
+      class="center-button">
       SPIN
     </button>
 
   </div>
 
   <div class="result">
-    <div class="result-title">DEMO RESULT</div>
-    <div id="result" class="result-value">
+
+    <div class="result-title">
+      DEMO RESULT
+    </div>
+
+    <div
+      id="result"
+      class="result-value">
       Spin the wheel!
     </div>
+
   </div>
 
   <div class="join-box">
@@ -229,7 +246,7 @@
     <h2>🌱 Want to join the actual promo?</h2>
 
     <p>
-      The real Lucky Spin is exclusively for qualified buyers.
+      The real Lucky Spin is for qualified buyers.
       Register first and receive your own Lucky Code.
     </p>
 
@@ -237,8 +254,7 @@
       class="join-button"
       href="https://docs.google.com/forms/d/e/1FAIpQLSeDtdLKbHWSOHmUPxGZynijlTsrnRmBvW6_3mb9V15BG7PiQg/viewform"
       target="_blank"
-      rel="noopener noreferrer"
-    >
+      rel="noopener noreferrer">
       🎟️ JOIN THE ACTUAL PROMO
     </a>
 
@@ -258,251 +274,557 @@
 
 <script>
 
-const canvas = document.getElementById("wheel");
-const ctx = canvas.getContext("2d");
+const canvas =
+  document.getElementById("wheel");
 
-const spinButton = document.getElementById("spinButton");
-const resultBox = document.getElementById("result");
+const ctx =
+  canvas.getContext("2d");
+
+const spinButton =
+  document.getElementById("spinButton");
+
+const resultBox =
+  document.getElementById("result");
+
+
+/* FINAL DEMO PRIZES */
 
 const prizes = [
+
   "+15 FREE SEEDLINGS",
-  "+20 FREE SEEDLINGS",
+
   "+30 FREE SEEDLINGS",
-  "+40 FREE SEEDLINGS",
+
   "+50 FREE SEEDLINGS",
-  "+60 FREE SEEDLINGS",
-  "TRY AGAIN",
-  "+15 FREE SEEDLINGS"
+
+  "+100 FREE SEEDLINGS",
+
+  "+150 FREE SEEDLINGS",
+
+  "+200 FREE SEEDLINGS",
+
+  "+250 FREE SEEDLINGS",
+
+  "+500 FREE SEEDLINGS"
+
 ];
 
-const segmentCount = prizes.length;
-const segmentAngle = (Math.PI * 2) / segmentCount;
+
+const segmentCount =
+  prizes.length;
+
+const segmentAngle =
+  (Math.PI * 2) / segmentCount;
 
 let rotation = 0;
+
 let spinning = false;
 
-const textColors = [
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff"
-];
+let audioContext = null;
+
+
+/* -------------------------
+   WHEEL DRAWING
+------------------------- */
 
 function drawWheel() {
 
-  const center = canvas.width / 2;
-  const radius = canvas.width / 2 - 8;
+  const center =
+    canvas.width / 2;
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const radius =
+    canvas.width / 2 - 8;
 
-  for (let i = 0; i < segmentCount; i++) {
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
 
-    const start = rotation + i * segmentAngle;
-    const end = start + segmentAngle;
+
+  for (
+    let i = 0;
+    i < segmentCount;
+    i++
+  ) {
+
+    const start =
+      rotation +
+      i * segmentAngle;
+
+    const end =
+      start +
+      segmentAngle;
+
 
     ctx.beginPath();
-    ctx.moveTo(center, center);
-    ctx.arc(center, center, radius, start, end);
+
+    ctx.moveTo(
+      center,
+      center
+    );
+
+    ctx.arc(
+      center,
+      center,
+      radius,
+      start,
+      end
+    );
+
     ctx.closePath();
 
-    ctx.fillStyle = i % 2 === 0 ? "#b32929" : "#17643a";
+
+    ctx.fillStyle =
+      i % 2 === 0
+        ? "#b32929"
+        : "#17643a";
+
     ctx.fill();
 
+
     ctx.lineWidth = 4;
-    ctx.strokeStyle = "#f5d76e";
+
+    ctx.strokeStyle =
+      "#f5d76e";
+
     ctx.stroke();
+
 
     ctx.save();
 
-    ctx.translate(center, center);
-    ctx.rotate(start + segmentAngle / 2);
+    ctx.translate(
+      center,
+      center
+    );
 
-    ctx.textAlign = "right";
-    ctx.fillStyle = textColors[i];
+    ctx.rotate(
+      start +
+      segmentAngle / 2
+    );
 
-    let fontSize = 22;
 
-    if (prizes[i].length > 18) {
-      fontSize = 18;
+    ctx.textAlign =
+      "right";
+
+    ctx.textBaseline =
+      "middle";
+
+    ctx.fillStyle =
+      "#ffffff";
+
+
+    let fontSize = 19;
+
+    if (
+      prizes[i].length > 18
+    ) {
+      fontSize = 16;
     }
 
-    ctx.font = "bold " + fontSize + "px Arial";
+
+    ctx.font =
+      "bold " +
+      fontSize +
+      "px Arial";
+
 
     ctx.fillText(
       prizes[i],
-      radius - 25,
-      7
+      radius - 22,
+      0
     );
+
 
     ctx.restore();
   }
 
-  // Center circle
+
+  /* Center */
 
   ctx.beginPath();
-  ctx.arc(center, center, 45, 0, Math.PI * 2);
 
-  ctx.fillStyle = "#17643a";
+  ctx.arc(
+    center,
+    center,
+    45,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fillStyle =
+    "#17643a";
+
   ctx.fill();
 
   ctx.lineWidth = 5;
-  ctx.strokeStyle = "#f5d76e";
+
+  ctx.strokeStyle =
+    "#f5d76e";
+
   ctx.stroke();
 }
 
 
-function playTick() {
+/* -------------------------
+   AUDIO
+------------------------- */
+
+function startAudio() {
 
   try {
 
-    const AudioContext =
+    const Audio =
       window.AudioContext ||
       window.webkitAudioContext;
 
-    if (!AudioContext) return;
+    if (!Audio) return;
 
-    const audio =
-      new AudioContext();
+    if (!audioContext) {
+
+      audioContext =
+        new Audio();
+
+    }
+
+    if (
+      audioContext.state ===
+      "suspended"
+    ) {
+
+      audioContext.resume();
+
+    }
+
+  } catch (error) {
+
+    audioContext = null;
+
+  }
+}
+
+
+function tickSound(
+  frequency = 190,
+  volume = 0.045,
+  duration = 0.035
+) {
+
+  if (!audioContext) return;
+
+  try {
 
     const oscillator =
-      audio.createOscillator();
+      audioContext.createOscillator();
 
     const gain =
-      audio.createGain();
+      audioContext.createGain();
 
-    oscillator.frequency.value = 180;
+
+    oscillator.type =
+      "square";
+
+    oscillator.frequency.value =
+      frequency;
+
 
     gain.gain.setValueAtTime(
-      0.06,
-      audio.currentTime
+      volume,
+      audioContext.currentTime
     );
 
     gain.gain.exponentialRampToValueAtTime(
       0.001,
-      audio.currentTime + 0.04
+      audioContext.currentTime +
+      duration
     );
 
+
     oscillator.connect(gain);
-    gain.connect(audio.destination);
+
+    gain.connect(
+      audioContext.destination
+    );
+
 
     oscillator.start();
 
     oscillator.stop(
-      audio.currentTime + 0.04
+      audioContext.currentTime +
+      duration
     );
 
   } catch (error) {
-    // Sound is optional.
+
+    /* Sound is optional. */
+
   }
 }
 
+
+function winnerSound() {
+
+  if (!audioContext) return;
+
+  try {
+
+    const notes = [
+      523.25,
+      659.25,
+      783.99,
+      1046.50
+    ];
+
+    notes.forEach(
+      (frequency, index) => {
+
+        setTimeout(
+          () => {
+
+            tickSound(
+              frequency,
+              0.08,
+              0.14
+            );
+
+          },
+          index * 120
+        );
+
+      }
+    );
+
+  } catch (error) {
+
+    /* Sound is optional. */
+
+  }
+}
+
+
+/* -------------------------
+   SPIN
+------------------------- */
 
 function spinWheel() {
 
   if (spinning) return;
 
+
+  startAudio();
+
+
   spinning = true;
 
-  spinButton.disabled = true;
+  spinButton.disabled =
+    true;
 
-  resultBox.textContent = "SPINNING... 🎡";
+
+  resultBox.textContent =
+    "SPINNING... 🎡";
+
 
   const extraSpins =
-    6 + Math.floor(Math.random() * 4);
+    7 +
+    Math.floor(
+      Math.random() * 3
+    );
+
 
   const winningIndex =
-    Math.floor(Math.random() * segmentCount);
+    Math.floor(
+      Math.random() *
+      segmentCount
+    );
 
-  const pointerAngle = -Math.PI / 2;
+
+  const pointerAngle =
+    -Math.PI / 2;
+
 
   const targetAngle =
     pointerAngle -
-    (winningIndex + 0.5) * segmentAngle;
+    (winningIndex + 0.5) *
+    segmentAngle;
+
 
   const currentNormalized =
-    rotation % (Math.PI * 2);
+    rotation %
+    (Math.PI * 2);
+
 
   let difference =
-    targetAngle - currentNormalized;
+    targetAngle -
+    currentNormalized;
 
-  while (difference < 0) {
-    difference += Math.PI * 2;
+
+  while (
+    difference < 0
+  ) {
+
+    difference +=
+      Math.PI * 2;
+
   }
+
 
   const finalRotation =
     rotation +
-    extraSpins * Math.PI * 2 +
+    extraSpins *
+    Math.PI * 2 +
     difference;
 
-  const startRotation = rotation;
 
-  const duration = 6500;
+  const startRotation =
+    rotation;
 
-  const startTime = performance.now();
 
-  let lastTickIndex = -1;
+  const duration =
+    7200;
+
+
+  const startTime =
+    performance.now();
+
+
+  let lastTick =
+    -1;
+
 
   function animate(now) {
 
     const elapsed =
-      now - startTime;
+      now -
+      startTime;
 
-    let progress =
-      Math.min(elapsed / duration, 1);
 
-    // Smooth ease-out
+    const progress =
+      Math.min(
+        elapsed / duration,
+        1
+      );
+
+
+    /*
+      Strong ease-out:
+      fast at beginning,
+      gradually slows near the end.
+    */
 
     const eased =
-      1 - Math.pow(1 - progress, 4);
+      1 -
+      Math.pow(
+        1 - progress,
+        5
+      );
+
 
     rotation =
       startRotation +
-      (finalRotation - startRotation) *
+      (
+        finalRotation -
+        startRotation
+      ) *
       eased;
+
 
     drawWheel();
 
-    // Tick sound
 
-    const currentTick =
+    /*
+      Tick follows wheel
+      movement.
+    */
+
+    const tickPosition =
       Math.floor(
-        (rotation / segmentAngle)
+        rotation /
+        segmentAngle
       );
 
-    if (currentTick !== lastTickIndex) {
 
-      lastTickIndex = currentTick;
+    if (
+      tickPosition !==
+      lastTick
+    ) {
 
-      playTick();
+      lastTick =
+        tickPosition;
+
+
+      /*
+        Tick becomes softer
+        as the wheel slows.
+      */
+
+      const remaining =
+        1 - progress;
+
+
+      const frequency =
+        150 +
+        remaining * 100;
+
+
+      const volume =
+        0.025 +
+        remaining * 0.045;
+
+
+      tickSound(
+        frequency,
+        volume,
+        0.035
+      );
+
     }
 
-    if (progress < 1) {
 
-      requestAnimationFrame(animate);
+    if (
+      progress < 1
+    ) {
+
+      requestAnimationFrame(
+        animate
+      );
 
     } else {
 
-      rotation = finalRotation;
+      rotation =
+        finalRotation;
 
       drawWheel();
 
-      spinning = false;
 
-      spinButton.disabled = false;
+      spinning =
+        false;
+
+      spinButton.disabled =
+        false;
+
 
       resultBox.textContent =
         prizes[winningIndex];
 
+
+      winnerSound();
+
     }
+
   }
 
-  requestAnimationFrame(animate);
+
+  requestAnimationFrame(
+    animate
+  );
+
 }
 
+
+/* -------------------------
+   START
+------------------------- */
 
 spinButton.addEventListener(
   "click",
@@ -515,4 +837,3 @@ drawWheel();
 
 </body>
 </html>
-```
