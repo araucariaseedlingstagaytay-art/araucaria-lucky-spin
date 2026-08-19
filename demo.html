@@ -1,0 +1,518 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Araucaria Lucky Spin — Demo</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #245c3b, #0b2819 70%);
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+  }
+
+  .brand {
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    opacity: 0.9;
+  }
+
+  h1 {
+    margin: 8px 0 4px;
+    font-size: clamp(28px, 7vw, 46px);
+  }
+
+  .subtitle {
+    margin: 0 auto 16px;
+    font-size: 15px;
+    opacity: 0.9;
+  }
+
+  .demo-banner {
+    background: #ffd54a;
+    color: #222;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 12px;
+    margin: 12px auto 20px;
+    max-width: 520px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.25);
+  }
+
+  .wheel-area {
+    position: relative;
+    width: min(88vw, 520px);
+    aspect-ratio: 1 / 1;
+    margin: 10px auto 20px;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 8px #e8c766,
+      0 0 0 12px #6f4520,
+      0 15px 35px rgba(0,0,0,0.45);
+    background: white;
+  }
+
+  .pointer {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-top: 48px solid #d62828;
+    filter: drop-shadow(0 3px 3px rgba(0,0,0,0.4));
+    z-index: 5;
+  }
+
+  .center-button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 6px solid #e8c766;
+    background: #17643a;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 4;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.35);
+  }
+
+  .center-button:active {
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+
+  .center-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .result {
+    min-height: 76px;
+    margin: 15px auto;
+    padding: 15px;
+    max-width: 520px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .result-title {
+    font-size: 13px;
+    opacity: 0.8;
+  }
+
+  .result-value {
+    font-size: clamp(22px, 6vw, 34px);
+    font-weight: bold;
+    color: #ffd54a;
+    margin-top: 5px;
+  }
+
+  .join-box {
+    margin: 22px auto 10px;
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(0,0,0,0.22);
+  }
+
+  .join-box h2 {
+    margin: 0 0 8px;
+    font-size: 22px;
+  }
+
+  .join-box p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  .join-button {
+    display: inline-block;
+    text-decoration: none;
+    background: #ffd54a;
+    color: #222;
+    font-weight: bold;
+    padding: 13px 22px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+
+  .join-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .notice {
+    font-size: 12px;
+    opacity: 0.7;
+    margin: 18px auto 5px;
+    line-height: 1.5;
+  }
+
+  .footer {
+    margin-top: 20px;
+    font-size: 12px;
+    opacity: 0.55;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="brand">ARAUCARIA SEEDLINGS TAGAYTAY</div>
+
+  <h1>🎡 Lucky Spin</h1>
+
+  <p class="subtitle">
+    Try the wheel and see what luck brings! 🌱
+  </p>
+
+  <div class="demo-banner">
+    🎉 DEMO SPIN — FOR FUN & VIEWING ONLY 🎉
+    <br>
+    <small>Demo results are NOT valid for promo redemption.</small>
+  </div>
+
+  <div class="wheel-area">
+
+    <div class="pointer"></div>
+
+    <canvas id="wheel" width="600" height="600"></canvas>
+
+    <button id="spinButton" class="center-button">
+      SPIN
+    </button>
+
+  </div>
+
+  <div class="result">
+    <div class="result-title">DEMO RESULT</div>
+    <div id="result" class="result-value">
+      Spin the wheel!
+    </div>
+  </div>
+
+  <div class="join-box">
+
+    <h2>🌱 Want to join the actual promo?</h2>
+
+    <p>
+      The real Lucky Spin is exclusively for qualified buyers.
+      Register first and receive your own Lucky Code.
+    </p>
+
+    <a
+      class="join-button"
+      href="https://docs.google.com/forms/d/e/1FAIpQLSeDtdLKbHWSOHmUPxGZynijlTsrnRmBvW6_3mb9V15BG7PiQg/viewform"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🎟️ JOIN THE ACTUAL PROMO
+    </a>
+
+  </div>
+
+  <div class="notice">
+    This public demo does not collect names, mobile numbers,
+    Facebook accounts, Lucky Codes, or customer information.
+  </div>
+
+  <div class="footer">
+    © Araucaria Seedlings Tagaytay
+  </div>
+
+</div>
+
+
+<script>
+
+const canvas = document.getElementById("wheel");
+const ctx = canvas.getContext("2d");
+
+const spinButton = document.getElementById("spinButton");
+const resultBox = document.getElementById("result");
+
+const prizes = [
+  "+15 FREE SEEDLINGS",
+  "+20 FREE SEEDLINGS",
+  "+30 FREE SEEDLINGS",
+  "+40 FREE SEEDLINGS",
+  "+50 FREE SEEDLINGS",
+  "+60 FREE SEEDLINGS",
+  "TRY AGAIN",
+  "+15 FREE SEEDLINGS"
+];
+
+const segmentCount = prizes.length;
+const segmentAngle = (Math.PI * 2) / segmentCount;
+
+let rotation = 0;
+let spinning = false;
+
+const textColors = [
+  "#ffffff",
+  "#ffffff",
+  "#ffffff",
+  "#ffffff",
+  "#ffffff",
+  "#ffffff",
+  "#ffffff",
+  "#ffffff"
+];
+
+function drawWheel() {
+
+  const center = canvas.width / 2;
+  const radius = canvas.width / 2 - 8;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < segmentCount; i++) {
+
+    const start = rotation + i * segmentAngle;
+    const end = start + segmentAngle;
+
+    ctx.beginPath();
+    ctx.moveTo(center, center);
+    ctx.arc(center, center, radius, start, end);
+    ctx.closePath();
+
+    ctx.fillStyle = i % 2 === 0 ? "#b32929" : "#17643a";
+    ctx.fill();
+
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = "#f5d76e";
+    ctx.stroke();
+
+    ctx.save();
+
+    ctx.translate(center, center);
+    ctx.rotate(start + segmentAngle / 2);
+
+    ctx.textAlign = "right";
+    ctx.fillStyle = textColors[i];
+
+    let fontSize = 22;
+
+    if (prizes[i].length > 18) {
+      fontSize = 18;
+    }
+
+    ctx.font = "bold " + fontSize + "px Arial";
+
+    ctx.fillText(
+      prizes[i],
+      radius - 25,
+      7
+    );
+
+    ctx.restore();
+  }
+
+  // Center circle
+
+  ctx.beginPath();
+  ctx.arc(center, center, 45, 0, Math.PI * 2);
+
+  ctx.fillStyle = "#17643a";
+  ctx.fill();
+
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = "#f5d76e";
+  ctx.stroke();
+}
+
+
+function playTick() {
+
+  try {
+
+    const AudioContext =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    if (!AudioContext) return;
+
+    const audio =
+      new AudioContext();
+
+    const oscillator =
+      audio.createOscillator();
+
+    const gain =
+      audio.createGain();
+
+    oscillator.frequency.value = 180;
+
+    gain.gain.setValueAtTime(
+      0.06,
+      audio.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      audio.currentTime + 0.04
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audio.destination);
+
+    oscillator.start();
+
+    oscillator.stop(
+      audio.currentTime + 0.04
+    );
+
+  } catch (error) {
+    // Sound is optional.
+  }
+}
+
+
+function spinWheel() {
+
+  if (spinning) return;
+
+  spinning = true;
+
+  spinButton.disabled = true;
+
+  resultBox.textContent = "SPINNING... 🎡";
+
+  const extraSpins =
+    6 + Math.floor(Math.random() * 4);
+
+  const winningIndex =
+    Math.floor(Math.random() * segmentCount);
+
+  const pointerAngle = -Math.PI / 2;
+
+  const targetAngle =
+    pointerAngle -
+    (winningIndex + 0.5) * segmentAngle;
+
+  const currentNormalized =
+    rotation % (Math.PI * 2);
+
+  let difference =
+    targetAngle - currentNormalized;
+
+  while (difference < 0) {
+    difference += Math.PI * 2;
+  }
+
+  const finalRotation =
+    rotation +
+    extraSpins * Math.PI * 2 +
+    difference;
+
+  const startRotation = rotation;
+
+  const duration = 6500;
+
+  const startTime = performance.now();
+
+  let lastTickIndex = -1;
+
+  function animate(now) {
+
+    const elapsed =
+      now - startTime;
+
+    let progress =
+      Math.min(elapsed / duration, 1);
+
+    // Smooth ease-out
+
+    const eased =
+      1 - Math.pow(1 - progress, 4);
+
+    rotation =
+      startRotation +
+      (finalRotation - startRotation) *
+      eased;
+
+    drawWheel();
+
+    // Tick sound
+
+    const currentTick =
+      Math.floor(
+        (rotation / segmentAngle)
+      );
+
+    if (currentTick !== lastTickIndex) {
+
+      lastTickIndex = currentTick;
+
+      playTick();
+    }
+
+    if (progress < 1) {
+
+      requestAnimationFrame(animate);
+
+    } else {
+
+      rotation = finalRotation;
+
+      drawWheel();
+
+      spinning = false;
+
+      spinButton.disabled = false;
+
+      resultBox.textContent =
+        prizes[winningIndex];
+
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+
+spinButton.addEventListener(
+  "click",
+  spinWheel
+);
+
+drawWheel();
+
+</script>
+
+</body>
+</html>
+```
