@@ -11,23 +11,91 @@ body {
     text-align: center;
     background: #eef7ee;
     margin: 0;
-    padding: 30px;
+    padding: 20px;
+    color: #176b35;
 }
 
 h1 {
     color: #176b35;
+    margin-bottom: 5px;
 }
 
-.wheel-container {
+.subtitle {
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.card {
+    max-width: 520px;
+    margin: 20px auto;
+    background: white;
+    padding: 22px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+}
+
+input {
+    padding: 12px;
+    font-size: 18px;
+    width: 210px;
+    max-width: 80%;
+    text-align: center;
+    border: 2px solid #176b35;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background: #176b35;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 6px;
+}
+
+button:hover {
+    background: #0e4d26;
+}
+
+button:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+.code-box {
+    background: #f4f9f4;
+    border: 2px dashed #176b35;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+#generatedCode {
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #d62828;
+    margin: 10px;
+}
+
+#wheelContainer {
     position: relative;
     width: 400px;
     height: 400px;
-    margin: 30px auto;
+    margin: 25px auto;
+    max-width: 90vw;
+    max-height: 90vw;
 }
 
 canvas {
     width: 400px;
     height: 400px;
+    max-width: 90vw;
+    max-height: 90vw;
     border-radius: 50%;
 }
 
@@ -44,31 +112,59 @@ canvas {
     z-index: 10;
 }
 
-button {
-    background: #176b35;
-    color: white;
-    border: none;
-    padding: 15px 40px;
-    font-size: 22px;
+#spinInfo {
+    margin-top: 15px;
+    font-size: 20px;
     font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #0e4d26;
-}
-
-button:disabled {
-    background: #999;
-    cursor: not-allowed;
 }
 
 #result {
-    margin-top: 25px;
-    font-size: 26px;
+    margin: 20px auto;
+    font-size: 25px;
     font-weight: bold;
     color: #176b35;
+    max-width: 500px;
+}
+
+.warning {
+    color: #d62828;
+    font-weight: bold;
+}
+
+.success {
+    color: #176b35;
+    font-weight: bold;
+}
+
+.small {
+    font-size: 14px;
+    color: #555;
+}
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    #wheelContainer {
+        width: 330px;
+        height: 330px;
+    }
+
+    canvas {
+        width: 330px;
+        height: 330px;
+    }
+
+    button {
+        width: 90%;
+        max-width: 320px;
+    }
 }
 </style>
 </head>
@@ -76,62 +172,97 @@ button:disabled {
 <body>
 
 <h1>🌱 Araucaria Lucky Spin 🎡</h1>
+<p class="subtitle">Your order comes with ONE Lucky Spin!</p>
 
-<p>Try your luck!</p>
+<div class="card">
 
-<div style="margin:20px;">
+    <div class="code-box">
 
-<label for="quantity">
-<strong>Enter Order Quantity:</strong>
-</label>
+        <strong>🎟️ YOUR LUCKY CODE</strong>
 
-<br><br>
+        <div id="generatedCode">---</div>
 
-<input
-    type="number"
-    id="quantity"
-    placeholder="Example: 1000"
-    min="500"
-    step="500"
-    style="
-        padding:10px;
-        font-size:18px;
-        width:180px;
-        text-align:center;
-    "
->
+        <button id="getCode">
+            GET MY LUCKY CODE
+        </button>
 
-<br><br>
+        <p class="small">
+            Keep your Lucky Code for your promo record.
+        </p>
 
-<button id="checkSpins">
-CHECK MY SPINS
-</button>
+    </div>
 
-<div
-    id="spinInfo"
-    style="
-        margin-top:15px;
-        font-size:20px;
-        font-weight:bold;
-        color:#176b35;
-    "
-></div>
+    <div>
+
+        <strong>ENTER YOUR LUCKY CODE</strong>
+
+        <br><br>
+
+        <input
+            type="text"
+            id="codeInput"
+            placeholder="Example: AS-216"
+            maxlength="6"
+            style="text-transform:uppercase;"
+        >
+
+    </div>
+
+    <br>
+
+    <div>
+
+        <strong>ENTER ORDER QUANTITY</strong>
+
+        <br><br>
+
+        <input
+            type="number"
+            id="quantity"
+            placeholder="Example: 1000"
+            min="500"
+            step="500"
+        >
+
+    </div>
+
+    <br>
+
+    <button id="checkSpins">
+        CHECK MY LUCK
+    </button>
+
+    <div id="spinInfo"></div>
 
 </div>
 
-<div class="wheel-container">
+
+<div id="wheelContainer">
+
     <div class="pointer"></div>
-    <canvas id="wheel" width="400" height="400"></canvas>
+
+    <canvas
+        id="wheel"
+        width="400"
+        height="400">
+    </canvas>
+
 </div>
 
-<button id="spinButton">SPIN!</button>
+<button id="spinButton" disabled>
+    🎡 SPIN!
+</button>
 
 <div id="result"></div>
 
+
 <script>
 
-const canvas = document.getElementById("wheel");
-const ctx = canvas.getContext("2d");
+const canvas =
+    document.getElementById("wheel");
+
+const ctx =
+    canvas.getContext("2d");
 
 const spinButton =
     document.getElementById("spinButton");
@@ -142,23 +273,99 @@ const result =
 const quantityInput =
     document.getElementById("quantity");
 
+const codeInput =
+    document.getElementById("codeInput");
+
 const checkSpinsButton =
     document.getElementById("checkSpins");
 
 const spinInfo =
     document.getElementById("spinInfo");
 
+const getCodeButton =
+    document.getElementById("getCode");
 
-let prizes = [
-    "+15 FREE SEEDLINGS",
-    "+15 FREE SEEDLINGS",
-    "+20 FREE SEEDLINGS",
-    "+20 FREE SEEDLINGS",
-    "+20 FREE SEEDLINGS",
-    "+30 FREE SEEDLINGS",
-    "+30 FREE SEEDLINGS",
-    "SPECIAL DISCOUNT"
-];
+const generatedCode =
+    document.getElementById("generatedCode");
+
+
+/* =========================
+   LUCKY CODE
+========================= */
+
+function createLuckyCode() {
+
+    const number =
+        Math.floor(
+            Math.random() * 900
+        ) + 100;
+
+    return "AS-" + number;
+}
+
+
+getCodeButton.addEventListener(
+    "click",
+    function() {
+
+        const existingCode =
+            localStorage.getItem(
+                "araucariaLuckyCode"
+            );
+
+        if (existingCode) {
+
+            generatedCode.textContent =
+                existingCode;
+
+            codeInput.value =
+                existingCode;
+
+            return;
+        }
+
+        const newCode =
+            createLuckyCode();
+
+        localStorage.setItem(
+            "araucariaLuckyCode",
+            newCode
+        );
+
+        generatedCode.textContent =
+            newCode;
+
+        codeInput.value =
+            newCode;
+
+    }
+);
+
+
+/* =========================
+   LOAD SAVED CODE
+========================= */
+
+const savedCode =
+    localStorage.getItem(
+        "araucariaLuckyCode"
+    );
+
+if (savedCode) {
+
+    generatedCode.textContent =
+        savedCode;
+
+    codeInput.value =
+        savedCode;
+}
+
+
+/* =========================
+   PRIZES
+========================= */
+
+let prizes = [];
 
 
 const prizeTiers = {
@@ -252,19 +459,21 @@ function getCashFloor(quantity) {
 
     if (quantity >= 10000) {
         return 30000;
-
-    } else if (quantity >= 5000) {
-        return 15000;
-
-    } else if (quantity >= 2000) {
-        return 6000;
-
-    } else if (quantity >= 1000) {
-        return 3000;
-
-    } else {
-        return 1500;
     }
+
+    if (quantity >= 5000) {
+        return 15000;
+    }
+
+    if (quantity >= 2000) {
+        return 6000;
+    }
+
+    if (quantity >= 1000) {
+        return 3000;
+    }
+
+    return 1500;
 }
 
 
@@ -277,10 +486,12 @@ function calculateCashPayment(
         quantity * 4;
 
     const discount =
-        quantity * discountPerPiece;
+        quantity *
+        discountPerPiece;
 
     const cashPayment =
-        regularValue - discount;
+        regularValue -
+        discount;
 
     const cashFloor =
         getCashFloor(quantity);
@@ -290,7 +501,8 @@ function calculateCashPayment(
         discount,
         cashPayment,
         cashFloor,
-        safe: cashPayment >= cashFloor
+        safe:
+            cashPayment >= cashFloor
     };
 }
 
@@ -310,7 +522,10 @@ function startAudio() {
             )();
     }
 
-    if (audioContext.state === "suspended") {
+    if (
+        audioContext.state ===
+        "suspended"
+    ) {
         audioContext.resume();
     }
 }
@@ -327,10 +542,16 @@ function tickSound() {
         audioContext.createGain();
 
     oscillator.connect(gain);
-    gain.connect(audioContext.destination);
 
-    oscillator.frequency.value = 1100;
-    oscillator.type = "square";
+    gain.connect(
+        audioContext.destination
+    );
+
+    oscillator.frequency.value =
+        1100;
+
+    oscillator.type =
+        "square";
 
     gain.gain.setValueAtTime(
         0.08,
@@ -339,13 +560,15 @@ function tickSound() {
 
     gain.gain.exponentialRampToValueAtTime(
         0.001,
-        audioContext.currentTime + 0.06
+        audioContext.currentTime +
+        0.06
     );
 
     oscillator.start();
 
     oscillator.stop(
-        audioContext.currentTime + 0.06
+        audioContext.currentTime +
+        0.06
     );
 }
 
@@ -361,9 +584,13 @@ function winSound() {
         audioContext.createGain();
 
     oscillator.connect(gain);
-    gain.connect(audioContext.destination);
 
-    oscillator.type = "sine";
+    gain.connect(
+        audioContext.destination
+    );
+
+    oscillator.type =
+        "sine";
 
     oscillator.frequency.setValueAtTime(
         520,
@@ -372,7 +599,8 @@ function winSound() {
 
     oscillator.frequency.exponentialRampToValueAtTime(
         1040,
-        audioContext.currentTime + 0.18
+        audioContext.currentTime +
+        0.18
     );
 
     gain.gain.setValueAtTime(
@@ -382,13 +610,15 @@ function winSound() {
 
     gain.gain.exponentialRampToValueAtTime(
         0.001,
-        audioContext.currentTime + 0.5
+        audioContext.currentTime +
+        0.5
     );
 
     oscillator.start();
 
     oscillator.stop(
-        audioContext.currentTime + 0.5
+        audioContext.currentTime +
+        0.5
     );
 }
 
@@ -399,8 +629,11 @@ function winSound() {
 
 function drawWheel() {
 
+    if (!prizes.length) return;
+
     const slice =
-        (2 * Math.PI) / prizes.length;
+        (2 * Math.PI) /
+        prizes.length;
 
     ctx.clearRect(
         0,
@@ -448,7 +681,8 @@ function drawWheel() {
         ctx.strokeStyle =
             "white";
 
-        ctx.lineWidth = 3;
+        ctx.lineWidth =
+            3;
 
         ctx.stroke();
 
@@ -472,7 +706,6 @@ function drawWheel() {
 
         const prizeText =
             prizes[i];
-
 
         if (
             prizeText.includes(
@@ -529,7 +762,158 @@ function drawWheel() {
 }
 
 
-drawWheel();
+/* =========================
+   CHECK ELIGIBILITY
+========================= */
+
+checkSpinsButton.addEventListener(
+    "click",
+    function() {
+
+        const code =
+            codeInput.value
+                .trim()
+                .toUpperCase();
+
+        const quantity =
+            Number(
+                quantityInput.value
+            );
+
+        if (
+            !/^AS-\d{3}$/.test(code)
+        ) {
+
+            spinInfo.innerHTML =
+                "<span class='warning'>" +
+                "⚠️ Please enter a valid Lucky Code like AS-216." +
+                "</span>";
+
+            spinButton.disabled =
+                true;
+
+            return;
+        }
+
+
+        if (quantity < 500) {
+
+            spinInfo.innerHTML =
+                "<span class='warning'>" +
+                "⚠️ Minimum order is 500 seedlings." +
+                "</span>";
+
+            spinButton.disabled =
+                true;
+
+            return;
+        }
+
+
+        currentQuantity =
+            quantity;
+
+
+        const usedKey =
+            "araucariaSpinUsed_" +
+            code;
+
+
+        if (
+            localStorage.getItem(
+                usedKey
+            ) === "true"
+        ) {
+
+            spinInfo.innerHTML =
+                "<span class='warning'>" +
+                "🔒 This Lucky Code has already been used." +
+                "</span>";
+
+            spinButton.disabled =
+                true;
+
+            result.textContent =
+                "Your Lucky Spin has already been completed.";
+
+            return;
+        }
+
+
+        let tier;
+        let selectedPrizeTier;
+
+
+        if (quantity >= 10000) {
+
+            tier =
+                "👑 MEGA LUCK";
+
+            selectedPrizeTier =
+                prizeTiers.mega;
+
+        } else if (
+            quantity >= 5000
+        ) {
+
+            tier =
+                "🔥 SUPER LUCK";
+
+            selectedPrizeTier =
+                prizeTiers.super;
+
+        } else if (
+            quantity >= 2000
+        ) {
+
+            tier =
+                "🌟 GREAT LUCK";
+
+            selectedPrizeTier =
+                prizeTiers.great;
+
+        } else if (
+            quantity >= 1000
+        ) {
+
+            tier =
+                "⭐ LUCKY";
+
+            selectedPrizeTier =
+                prizeTiers.lucky;
+
+        } else {
+
+            tier =
+                "🍀 STARTER LUCK";
+
+            selectedPrizeTier =
+                prizeTiers.starter;
+        }
+
+
+        prizes =
+            selectedPrizeTier;
+
+        drawWheel();
+
+
+        spinInfo.innerHTML =
+            "<span class='success'>" +
+            tier +
+            "<br><br>" +
+            "🎡 YOU HAVE 1 LUCKY SPIN!" +
+            "</span>";
+
+        result.textContent =
+            "Good luck, " +
+            code +
+            "! 🌱";
+
+        spinButton.disabled =
+            false;
+    }
+);
 
 
 /* =========================
@@ -542,19 +926,50 @@ spinButton.addEventListener(
 
         if (spinning) return;
 
-        if (currentQuantity < 500) {
+        if (
+            currentQuantity < 500 ||
+            !prizes.length
+        ) {
 
-            result.innerHTML =
-                "⚠️ Please enter your order quantity and check your spins first.";
+            result.textContent =
+                "⚠️ Please check your Lucky Code and order quantity first.";
 
             return;
         }
+
+
+        const code =
+            codeInput.value
+                .trim()
+                .toUpperCase();
+
+        const usedKey =
+            "araucariaSpinUsed_" +
+            code;
+
+
+        if (
+            localStorage.getItem(
+                usedKey
+            ) === "true"
+        ) {
+
+            result.textContent =
+                "🔒 This Lucky Code has already been used.";
+
+            return;
+        }
+
 
         startAudio();
 
         spinning = true;
 
-        spinButton.disabled = true;
+        spinButton.disabled =
+            true;
+
+        checkSpinsButton.disabled =
+            true;
 
         result.textContent =
             "🎡 Spinning...";
@@ -615,7 +1030,6 @@ spinButton.addEventListener(
             const elapsed =
                 time -
                 startTime;
-
 
             const progress =
                 Math.min(
@@ -686,12 +1100,21 @@ spinButton.addEventListener(
 
             } else {
 
-                spinning = false;
-
-                spinButton.disabled =
+                spinning =
                     false;
 
                 winSound();
+
+
+                /*
+                 * LOCK THIS CODE
+                 * AFTER THE ONE SPIN
+                 */
+
+                localStorage.setItem(
+                    usedKey,
+                    "true"
+                );
 
 
                 if (
@@ -703,21 +1126,24 @@ spinButton.addEventListener(
 
 
                     if (
-                        currentQuantity >= 5000
+                        currentQuantity >=
+                        5000
                     ) {
 
                         discountPerPiece =
                             1.00;
 
                     } else if (
-                        currentQuantity >= 2000
+                        currentQuantity >=
+                        2000
                     ) {
 
                         discountPerPiece =
                             1.00;
 
                     } else if (
-                        currentQuantity >= 1000
+                        currentQuantity >=
+                        1000
                     ) {
 
                         discountPerPiece =
@@ -761,14 +1187,28 @@ spinButton.addEventListener(
                             discountAmount.toLocaleString();
                     }
 
-
                 } else {
 
-                    result.textContent =
-                        "🎉 YOU WON: " +
+                    result.innerHTML =
+                        "🎉 YOU WON! 🎉<br><br>" +
                         prizes[winner] +
-                        "!";
+                        "<br><br>" +
+                        "Lucky Code: " +
+                        code;
                 }
+
+
+                spinInfo.innerHTML =
+                    "<span class='success'>" +
+                    "🔒 SPIN COMPLETED<br>" +
+                    "Thank you for joining!" +
+                    "</span>";
+
+                spinButton.disabled =
+                    true;
+
+                checkSpinsButton.disabled =
+                    false;
             }
         }
 
@@ -782,109 +1222,13 @@ spinButton.addEventListener(
 
 
 /* =========================
-   CHECK SPINS
+   INITIAL WHEEL
 ========================= */
 
-checkSpinsButton.addEventListener(
-    "click",
-    function() {
+prizes =
+    prizeTiers.starter;
 
-        const quantity =
-            Number(
-                quantityInput.value
-            );
-
-
-        currentQuantity =
-            quantity;
-
-
-        if (quantity < 500) {
-
-            spinInfo.textContent =
-                "⚠️ Minimum order is 500 seedlings.";
-
-            spinButton.disabled =
-                true;
-
-            return;
-        }
-
-
-        let tier;
-        let selectedPrizeTier;
-
-
-        if (quantity >= 10000) {
-
-            tier =
-                "👑 MEGA LUCK";
-
-            selectedPrizeTier =
-                prizeTiers.mega;
-
-        } else if (
-            quantity >= 5000
-        ) {
-
-            tier =
-                "🔥 SUPER LUCK";
-
-            selectedPrizeTier =
-                prizeTiers.super;
-
-        } else if (
-            quantity >= 2000
-        ) {
-
-            tier =
-                "🌟 GREAT LUCK";
-
-            selectedPrizeTier =
-                prizeTiers.great;
-
-        } else if (
-            quantity >= 1000
-        ) {
-
-            tier =
-                "⭐ LUCKY";
-
-            selectedPrizeTier =
-                prizeTiers.lucky;
-
-        } else {
-
-            tier =
-                "🍀 STARTER LUCK";
-
-            selectedPrizeTier =
-                prizeTiers.starter;
-        }
-
-
-        prizes =
-            selectedPrizeTier;
-
-
-        drawWheel();
-
-
-        spinInfo.innerHTML =
-            tier +
-            "<br><br>" +
-            "🎡 You are eligible for Lucky Spin!";
-
-
-        result.textContent =
-            "Good luck! 🌱";
-
-
-        spinButton.disabled =
-            false;
-
-    }
-);
+drawWheel();
 
 </script>
 
