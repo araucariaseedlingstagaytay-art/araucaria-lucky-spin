@@ -12,181 +12,301 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
+  min-height: 100%;
+}
+
+body {
   min-height: 100vh;
+  padding: 14px;
   font-family: Arial, sans-serif;
-  background:
-    radial-gradient(circle at top, #2d7048, #0b2819 72%);
-  color: white;
   text-align: center;
-  padding: 16px;
+  color: #fff;
+  background:
+    radial-gradient(circle at top, #2d7048 0%, #0b2819 72%);
 }
 
 .container {
   width: 100%;
-  max-width: 650px;
-  margin: auto;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 .brand {
+  margin-top: 2px;
   font-size: 13px;
   letter-spacing: 2px;
-  margin-top: 4px;
-  opacity: 0.9;
+  opacity: .92;
 }
 
 h1 {
-  margin: 6px 0 2px;
-  font-size: clamp(27px, 7vw, 44px);
+  margin: 5px 0 1px;
+  font-size: clamp(28px, 6vw, 42px);
 }
 
 .subtitle {
-  margin: 0 auto 12px;
+  margin: 0 auto 10px;
   font-size: 14px;
-  opacity: 0.9;
+  opacity: .9;
 }
 
 .demo-banner {
+  max-width: 520px;
+  margin: 9px auto 14px;
+  padding: 9px 12px;
+  border-radius: 12px;
   background: #ffd54a;
   color: #222;
   font-weight: bold;
-  border-radius: 12px;
-  padding: 10px 12px;
-  margin: 10px auto 17px;
-  max-width: 530px;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.25);
   line-height: 1.35;
+  box-shadow: 0 5px 18px rgba(0,0,0,.25);
 }
 
 .demo-banner small {
-  font-weight: normal;
   font-size: 11px;
+  font-weight: normal;
 }
 
-/* Desktop wheel size adjusted */
+/* =========================
+   WHEEL
+========================= */
+
 .wheel-area {
   position: relative;
-  width: min(78vw, 450px);
+
+  /* Smaller desktop wheel */
+  width: min(82vw, 475px);
+
   aspect-ratio: 1 / 1;
-  margin: 8px auto 18px;
+
+  margin: 5px auto 16px;
 }
 
 canvas {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
+
   border-radius: 50%;
+
+  background: #fff;
+
   box-shadow:
     0 0 0 7px #e8c766,
     0 0 0 11px #6f4520,
-    0 15px 35px rgba(0,0,0,0.45);
-  background: white;
+    0 15px 35px rgba(0,0,0,.45);
 }
 
 .pointer {
   position: absolute;
-  top: -12px;
+  top: -11px;
   left: 50%;
+
   transform: translateX(-50%);
+
   width: 0;
   height: 0;
-  border-left: 21px solid transparent;
-  border-right: 21px solid transparent;
-  border-top: 46px solid #d62828;
-  filter: drop-shadow(0 3px 3px rgba(0,0,0,0.4));
+
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 44px solid #d62828;
+
+  filter:
+    drop-shadow(0 3px 3px rgba(0,0,0,.4));
+
   z-index: 5;
 }
 
 .center-button {
   position: absolute;
+
   left: 50%;
   top: 50%;
+
   transform: translate(-50%, -50%);
-  width: 86px;
-  height: 86px;
+
+  width: 82px;
+  height: 82px;
+
   border-radius: 50%;
+
   border: 6px solid #e8c766;
+
   background: #17643a;
-  color: white;
-  font-size: 16px;
+
+  color: #fff;
+
+  font-size: 15px;
   font-weight: bold;
+
   cursor: pointer;
+
   z-index: 4;
-  box-shadow: 0 5px 12px rgba(0,0,0,0.35);
+
+  box-shadow:
+    0 5px 12px rgba(0,0,0,.35);
 }
 
 .center-button:active {
-  transform: translate(-50%, -50%) scale(0.96);
+  transform:
+    translate(-50%, -50%)
+    scale(.96);
 }
 
 .center-button:disabled {
-  opacity: 0.6;
+  opacity: .6;
   cursor: not-allowed;
 }
 
+/* =========================
+   RESULT
+========================= */
+
 .result {
-  min-height: 78px;
-  margin: 12px auto;
-  padding: 13px;
-  max-width: 530px;
+  min-height: 76px;
+
+  max-width: 520px;
+
+  margin: 10px auto;
+
+  padding: 12px;
+
   border-radius: 15px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
+
+  background:
+    rgba(255,255,255,.12);
+
+  border:
+    1px solid rgba(255,255,255,.2);
 }
 
 .result-title {
   font-size: 12px;
-  opacity: 0.8;
+  opacity: .8;
 }
 
 .result-value {
-  font-size: clamp(21px, 5.5vw, 32px);
+  margin-top: 4px;
+
+  font-size:
+    clamp(21px, 5vw, 31px);
+
   font-weight: bold;
+
   color: #ffd54a;
-  margin-top: 5px;
 }
 
+/* =========================
+   JOIN
+========================= */
+
 .join-box {
-  margin: 20px auto 8px;
-  padding: 18px;
+  margin: 18px auto 8px;
+
+  padding: 17px;
+
   border-radius: 16px;
-  background: rgba(0,0,0,0.23);
+
+  background:
+    rgba(0,0,0,.23);
 }
 
 .join-box h2 {
   margin: 0 0 7px;
+
   font-size: 21px;
 }
 
 .join-box p {
+  margin: 0 0 13px;
+
   font-size: 13px;
+
   line-height: 1.45;
-  margin: 0 0 14px;
 }
 
 .join-button {
   display: inline-block;
-  text-decoration: none;
-  background: #ffd54a;
-  color: #222;
-  font-weight: bold;
+
   padding: 12px 21px;
+
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+
+  background: #ffd54a;
+
+  color: #222;
+
+  font-weight: bold;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.25);
 }
 
 .notice {
+  max-width: 560px;
+
+  margin: 13px auto 4px;
+
   font-size: 11px;
-  opacity: 0.7;
-  margin: 15px auto 5px;
+
   line-height: 1.5;
+
+  opacity: .68;
 }
 
 .footer {
-  margin-top: 17px;
+  margin-top: 15px;
+
   font-size: 11px;
-  opacity: 0.5;
+
+  opacity: .45;
+}
+
+/* =========================
+   PHONE
+========================= */
+
+@media (max-width: 520px) {
+
+  body {
+    padding: 10px;
+  }
+
+  .brand {
+    font-size: 11px;
+  }
+
+  h1 {
+    font-size: 29px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .demo-banner {
+    margin-bottom: 13px;
+    font-size: 13px;
+  }
+
+  .wheel-area {
+    width: min(92vw, 430px);
+  }
+
+  .center-button {
+    width: 76px;
+    height: 76px;
+    font-size: 14px;
+  }
+
+  .result {
+    margin-top: 8px;
+  }
+
 }
 </style>
 </head>
@@ -208,8 +328,11 @@ canvas {
   <div class="demo-banner">
     🎉 DEMO SPIN — FOR FUN & VIEWING ONLY 🎉
     <br>
-    <small>Demo results are NOT valid for promo redemption.</small>
+    <small>
+      Demo results are NOT valid for promo redemption.
+    </small>
   </div>
+
 
   <div class="wheel-area">
 
@@ -217,8 +340,8 @@ canvas {
 
     <canvas
       id="wheel"
-      width="600"
-      height="600">
+      width="700"
+      height="700">
     </canvas>
 
     <button
@@ -228,6 +351,7 @@ canvas {
     </button>
 
   </div>
+
 
   <div class="result">
 
@@ -243,9 +367,12 @@ canvas {
 
   </div>
 
+
   <div class="join-box">
 
-    <h2>🌱 Want to join the actual promo?</h2>
+    <h2>
+      🌱 Want to join the actual promo?
+    </h2>
 
     <p>
       The real Lucky Spin is for qualified buyers.
@@ -257,24 +384,58 @@ canvas {
       href="https://docs.google.com/forms/d/e/1FAIpQLSeDtdLKbHWSOHmUPxGZynijlTsrnRmBvW6_3mb9V15BG7PiQg/viewform"
       target="_blank"
       rel="noopener noreferrer">
+
       🎟️ JOIN THE ACTUAL PROMO
+
     </a>
 
   </div>
 
+
   <div class="notice">
-    This public demo does not collect names, mobile numbers,
-    Facebook accounts, Lucky Codes, or customer information.
+
+    This public demo does not collect names,
+    mobile numbers, Facebook accounts,
+    Lucky Codes, or customer information.
+
   </div>
 
+
   <div class="footer">
+
     © Araucaria Seedlings Tagaytay
+
   </div>
 
 </div>
 
 
 <script>
+
+/* ==========================================
+   DEMO PRIZES
+========================================== */
+
+const prizes = [
+
+  "+15 FREE SEEDLINGS",
+
+  "+30 FREE SEEDLINGS",
+
+  "+50 FREE SEEDLINGS",
+
+  "+100 FREE SEEDLINGS",
+
+  "+150 FREE SEEDLINGS",
+
+  "+200 FREE SEEDLINGS",
+
+  "+250 FREE SEEDLINGS",
+
+  "+500 FREE SEEDLINGS"
+
+];
+
 
 const canvas =
   document.getElementById("wheel");
@@ -289,28 +450,12 @@ const resultBox =
   document.getElementById("result");
 
 
-/* FINAL DEMO PRIZES */
-
-const prizes = [
-
-  "+15 FREE SEEDLINGS",
-  "+30 FREE SEEDLINGS",
-  "+50 FREE SEEDLINGS",
-  "+100 FREE SEEDLINGS",
-  "+150 FREE SEEDLINGS",
-  "+200 FREE SEEDLINGS",
-  "+250 FREE SEEDLINGS",
-  "+500 FREE SEEDLINGS"
-
-];
-
-
-const segmentCount =
+const count =
   prizes.length;
 
-const segmentAngle =
-  (Math.PI * 2) /
-  segmentCount;
+const segment =
+  (Math.PI * 2) / count;
+
 
 let rotation = 0;
 
@@ -319,9 +464,9 @@ let spinning = false;
 let audioContext = null;
 
 
-/* =========================
+/* ==========================================
    DRAW WHEEL
-========================= */
+========================================== */
 
 function drawWheel() {
 
@@ -329,7 +474,7 @@ function drawWheel() {
     canvas.width / 2;
 
   const radius =
-    canvas.width / 2 - 8;
+    center - 10;
 
 
   ctx.clearRect(
@@ -342,18 +487,20 @@ function drawWheel() {
 
   for (
     let i = 0;
-    i < segmentCount;
+    i < count;
     i++
   ) {
 
     const start =
       rotation +
-      i * segmentAngle;
+      i * segment;
 
     const end =
       start +
-      segmentAngle;
+      segment;
 
+
+    /* Slice */
 
     ctx.beginPath();
 
@@ -389,10 +536,7 @@ function drawWheel() {
     ctx.stroke();
 
 
-    /*
-      Prize text is positioned
-      safely outside the center.
-    */
+    /* Prize text */
 
     ctx.save();
 
@@ -403,8 +547,14 @@ function drawWheel() {
 
     ctx.rotate(
       start +
-      segmentAngle / 2
+      segment / 2
     );
+
+
+    /*
+      Text is deliberately kept
+      far away from the center circle.
+    */
 
     ctx.textAlign =
       "right";
@@ -423,7 +573,7 @@ function drawWheel() {
       prizes[i].length >= 19
     ) {
 
-      fontSize = 19;
+      fontSize = 18;
 
     }
 
@@ -436,7 +586,7 @@ function drawWheel() {
 
     ctx.fillText(
       prizes[i],
-      radius - 15,
+      radius - 25,
       0
     );
 
@@ -446,7 +596,7 @@ function drawWheel() {
   }
 
 
-  /* Center circle */
+  /* Decorative center */
 
   ctx.beginPath();
 
@@ -473,42 +623,35 @@ function drawWheel() {
 }
 
 
-/* =========================
+/* ==========================================
    AUDIO
-========================= */
+========================================== */
 
 function startAudio() {
 
-  try {
-
-    const Audio =
-      window.AudioContext ||
-      window.webkitAudioContext;
-
-    if (!Audio)
-      return;
+  const AudioClass =
+    window.AudioContext ||
+    window.webkitAudioContext;
 
 
-    if (!audioContext) {
-
-      audioContext =
-        new Audio();
-
-    }
+  if (!AudioClass)
+    return;
 
 
-    if (
-      audioContext.state ===
-      "suspended"
-    ) {
+  if (!audioContext) {
 
-      audioContext.resume();
+    audioContext =
+      new AudioClass();
 
-    }
+  }
 
-  } catch (error) {
 
-    audioContext = null;
+  if (
+    audioContext.state ===
+    "suspended"
+  ) {
+
+    audioContext.resume();
 
   }
 
@@ -516,9 +659,9 @@ function startAudio() {
 
 
 function tickSound(
-  frequency = 190,
-  volume = 0.045,
-  duration = 0.035
+  frequency,
+  volume,
+  duration
 ) {
 
   if (!audioContext)
@@ -548,7 +691,7 @@ function tickSound(
 
 
     gain.gain.exponentialRampToValueAtTime(
-      0.001,
+      .001,
       audioContext.currentTime +
       duration
     );
@@ -568,11 +711,7 @@ function tickSound(
       duration
     );
 
-  } catch (error) {
-
-    /* Sound is optional. */
-
-  }
+  } catch (e) {}
 
 }
 
@@ -592,15 +731,15 @@ function winnerSound() {
 
 
   notes.forEach(
-    (frequency, index) => {
+    (note, index) => {
 
       setTimeout(
         () => {
 
           tickSound(
-            frequency,
-            0.09,
-            0.14
+            note,
+            .09,
+            .14
           );
 
         },
@@ -613,9 +752,9 @@ function winnerSound() {
 }
 
 
-/* =========================
+/* ==========================================
    SPIN
-========================= */
+========================================== */
 
 function spinWheel() {
 
@@ -636,6 +775,12 @@ function spinWheel() {
     "SPINNING... 🎡";
 
 
+  const winningIndex =
+    Math.floor(
+      Math.random() * count
+    );
+
+
   const extraSpins =
     7 +
     Math.floor(
@@ -643,12 +788,11 @@ function spinWheel() {
     );
 
 
-  const winningIndex =
-    Math.floor(
-      Math.random() *
-      segmentCount
-    );
-
+  /*
+    Pointer is at the top.
+    Calculate exact target angle
+    for the selected prize.
+  */
 
   const pointerAngle =
     -Math.PI / 2;
@@ -656,18 +800,21 @@ function spinWheel() {
 
   const targetAngle =
     pointerAngle -
-    (winningIndex + 0.5) *
-    segmentAngle;
+    (
+      winningIndex +
+      .5
+    ) *
+    segment;
 
 
-  const currentNormalized =
+  const current =
     rotation %
     (Math.PI * 2);
 
 
   let difference =
     targetAngle -
-    currentNormalized;
+    current;
 
 
   while (
@@ -680,6 +827,10 @@ function spinWheel() {
   }
 
 
+  const startRotation =
+    rotation;
+
+
   const finalRotation =
     rotation +
     extraSpins *
@@ -687,19 +838,15 @@ function spinWheel() {
     difference;
 
 
-  const startRotation =
-    rotation;
-
-
   const duration =
-    7200;
+    7600;
 
 
   const startTime =
     performance.now();
 
 
-  let lastTick =
+  let lastSegment =
     -1;
 
 
@@ -716,6 +863,12 @@ function spinWheel() {
         1
       );
 
+
+    /*
+      Strong easing:
+      fast beginning,
+      long smooth slowdown.
+    */
 
     const eased =
       1 -
@@ -737,34 +890,39 @@ function spinWheel() {
     drawWheel();
 
 
-    const tickPosition =
+    /*
+      Tick sound follows
+      wheel segment movement.
+    */
+
+    const currentSegment =
       Math.floor(
         rotation /
-        segmentAngle
+        segment
       );
 
 
     if (
-      tickPosition !==
-      lastTick
+      currentSegment !==
+      lastSegment
     ) {
 
-      lastTick =
-        tickPosition;
+      lastSegment =
+        currentSegment;
 
 
-      const remaining =
+      const slowdown =
         1 - progress;
 
 
       tickSound(
-        150 +
-        remaining * 100,
+        145 +
+        slowdown * 105,
 
-        0.025 +
-        remaining * 0.045,
+        .025 +
+        slowdown * .05,
 
-        0.035
+        .035
       );
 
     }
@@ -816,6 +974,8 @@ spinButton.addEventListener(
   spinWheel
 );
 
+
+/* Initial wheel */
 
 drawWheel();
 
