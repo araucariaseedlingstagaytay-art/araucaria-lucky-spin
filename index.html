@@ -12,390 +12,176 @@
 
 <title>Araucaria Lucky Spin</title>
 
-
 <style>
 
 body {
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    text-align:
-        center;
-
-    background:
-        #eef7ee;
-
-    margin:
-        0;
-
-    padding:
-        25px 15px;
-
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #eef7ee;
+    margin: 0;
+    padding: 25px 15px;
 }
-
 
 h1 {
-
-    color:
-        #176b35;
-
+    color: #176b35;
 }
-
 
 .container {
-
-    max-width:
-        600px;
-
-    margin:
-        auto;
-
+    max-width: 600px;
+    margin: auto;
 }
-
 
 input {
-
-    padding:
-        12px;
-
-    font-size:
-        18px;
-
-    width:
-        220px;
-
-    max-width:
-        80%;
-
-    text-align:
-        center;
-
-    border:
-        2px solid #176b35;
-
-    border-radius:
-        8px;
-
+    padding: 12px;
+    font-size: 18px;
+    width: 220px;
+    max-width: 80%;
+    text-align: center;
+    border: 2px solid #176b35;
+    border-radius: 8px;
 }
-
 
 button {
-
-    background:
-        #176b35;
-
-    color:
-        white;
-
-    border:
-        none;
-
-    padding:
-        14px 28px;
-
-    font-size:
-        19px;
-
-    font-weight:
-        bold;
-
-    border-radius:
-        10px;
-
-    cursor:
-        pointer;
-
-    margin:
-        6px;
-
+    background: #176b35;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 19px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 6px;
 }
-
 
 button:hover {
-
-    background:
-        #0e4d26;
-
+    background: #0e4d26;
 }
-
 
 button:disabled {
-
-    background:
-        #999;
-
-    cursor:
-        not-allowed;
-
+    background: #999;
+    cursor: not-allowed;
 }
-
 
 .note {
-
-    margin:
-        15px auto;
-
-    padding:
-        12px;
-
-    max-width:
-        500px;
-
-    background:
-        #fff8d8;
-
-    border:
-        1px solid #e5cf62;
-
-    border-radius:
-        10px;
-
-    font-size:
-        16px;
-
-    font-weight:
-        bold;
-
-    color:
-        #5d5000;
-
+    margin: 15px auto;
+    padding: 12px;
+    max-width: 500px;
+    background: #fff8d8;
+    border: 1px solid #e5cf62;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #5d5000;
 }
-
 
 .tierBox {
-
-    margin:
-        15px auto;
-
-    padding:
-        15px;
-
-    max-width:
-        500px;
-
-    background:
-        white;
-
-    border-radius:
-        12px;
-
-    box-shadow:
-        0 3px 10px
-        rgba(0,0,0,0.08);
-
+    margin: 15px auto;
+    padding: 15px;
+    max-width: 500px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
-
 
 #tierName {
-
-    font-size:
-        24px;
-
-    font-weight:
-        bold;
-
-    color:
-        #176b35;
-
+    font-size: 24px;
+    font-weight: bold;
+    color: #176b35;
 }
-
 
 #tierRewards {
-
-    margin-top:
-        8px;
-
-    font-size:
-        15px;
-
-    color:
-        #555;
-
+    margin-top: 8px;
+    font-size: 15px;
+    color: #555;
 }
-
 
 .wheel-container {
-
-    position:
-        relative;
-
-    width:
-        400px;
-
-    height:
-        400px;
-
-    max-width:
-        90vw;
-
-    max-height:
-        90vw;
-
-    margin:
-        25px auto;
-
+    position: relative;
+    width: 400px;
+    height: 400px;
+    max-width: 90vw;
+    max-height: 90vw;
+    margin: 25px auto;
 }
-
 
 canvas {
-
-    width:
-        400px;
-
-    height:
-        400px;
-
-    max-width:
-        90vw;
-
-    max-height:
-        90vw;
-
-    border-radius:
-        50%;
-
+    width: 400px;
+    height: 400px;
+    max-width: 90vw;
+    max-height: 90vw;
+    border-radius: 50%;
 }
-
 
 .pointer {
-
-    position:
-        absolute;
-
-    top:
-        -5px;
-
-    left:
-        50%;
-
-    transform:
-        translateX(-50%);
-
-    width:
-        0;
-
-    height:
-        0;
-
-    border-left:
-        18px solid transparent;
-
-    border-right:
-        18px solid transparent;
-
-    border-top:
-        35px solid #d62828;
-
-    z-index:
-        10;
-
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 35px solid #d62828;
+    z-index: 10;
 }
-
 
 #spinInfo {
-
-    margin-top:
-        15px;
-
-    font-size:
-        18px;
-
-    font-weight:
-        bold;
-
-    color:
-        #176b35;
-
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #176b35;
 }
-
 
 #result {
-
-    margin-top:
-        20px;
-
-    font-size:
-        24px;
-
-    font-weight:
-        bold;
-
-    color:
-        #176b35;
-
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #176b35;
 }
-
 
 .small {
-
-    font-size:
-        14px;
-
-    color:
-        #666;
-
+    font-size: 14px;
+    color: #666;
 }
-
 
 </style>
 
 </head>
 
-
 <body>
 
-
 <div class="container">
-
 
 <h1>
 🌱 Araucaria Lucky Spin 🎡
 </h1>
 
-
 <p>
-
 Enter the Lucky Code given to you by
 Araucaria Seedlings Tagaytay.
-
 </p>
-
-
-<div>
-
 
 <strong>
 🎟️ ENTER YOUR LUCKY CODE
 </strong>
 
-
-<br>
-<br>
-
+<br><br>
 
 <input
     type="text"
     id="luckyCode"
-    placeholder="Example: AS-216"
+    placeholder="Example: AS-219"
     maxlength="10"
     autocomplete="off"
 >
 
-
-<br>
-<br>
-
+<br><br>
 
 <strong>
 📦 ENTER ORDER QUANTITY
 </strong>
 
-
-<br>
-<br>
-
+<br><br>
 
 <input
     type="number"
@@ -405,14 +191,10 @@ Araucaria Seedlings Tagaytay.
     step="500"
 >
 
-
 <div class="note">
-
 🌱 Higher order quantities unlock
 better prize ranges! 🎁
-
 </div>
-
 
 <div class="tierBox">
 
@@ -420,75 +202,49 @@ better prize ranges! 🎁
 🍀 STARTER LUCK
 </div>
 
-
 <div id="tierRewards">
-
 Enter your order quantity to see
 your Lucky Spin range.
-
 </div>
 
 </div>
-
 
 <br>
 
-
-<button
-    id="checkButton"
->
-
+<button id="checkButton">
 CHECK MY LUCK
-
 </button>
 
-
 <div id="spinInfo"></div>
-
-
-</div>
-
 
 <div class="wheel-container">
 
 <div class="pointer"></div>
 
-
 <canvas
     id="wheel"
     width="400"
-    height="400"
-></canvas>
-
+    height="400">
+</canvas>
 
 </div>
-
 
 <button
     id="spinButton"
     disabled
 >
-
 SPIN!
-
 </button>
-
 
 <div id="result"></div>
 
-
 <p class="small">
-
 Minimum order: 500 seedlings
-
 </p>
-
 
 </div>
 
-
 <script>
-
 
 /* =========================================
    GOOGLE APPS SCRIPT WEB APP
@@ -503,63 +259,34 @@ const API_URL =
 ========================================= */
 
 const canvas =
-document.getElementById(
-    "wheel"
-);
-
+document.getElementById("wheel");
 
 const ctx =
-canvas.getContext(
-    "2d"
-);
-
+canvas.getContext("2d");
 
 const checkButton =
-document.getElementById(
-    "checkButton"
-);
-
+document.getElementById("checkButton");
 
 const spinButton =
-document.getElementById(
-    "spinButton"
-);
-
+document.getElementById("spinButton");
 
 const luckyCodeInput =
-document.getElementById(
-    "luckyCode"
-);
-
+document.getElementById("luckyCode");
 
 const quantityInput =
-document.getElementById(
-    "quantity"
-);
-
+document.getElementById("quantity");
 
 const spinInfo =
-document.getElementById(
-    "spinInfo"
-);
-
+document.getElementById("spinInfo");
 
 const result =
-document.getElementById(
-    "result"
-);
-
+document.getElementById("result");
 
 const tierName =
-document.getElementById(
-    "tierName"
-);
-
+document.getElementById("tierName");
 
 const tierRewards =
-document.getElementById(
-    "tierRewards"
-);
+document.getElementById("tierRewards");
 
 
 /* =========================================
@@ -567,17 +294,12 @@ document.getElementById(
 ========================================= */
 
 const center = 200;
-
 const radius = 190;
 
 let currentRotation = 0;
-
 let spinning = false;
-
 let currentQuantity = 0;
-
 let currentCode = "";
-
 let prizes = [];
 
 
@@ -588,107 +310,58 @@ let prizes = [];
 const prizeTiers = {
 
 starter: [
-
     "+15 FREE SEEDLINGS",
-
     "+15 FREE SEEDLINGS",
-
     "+20 FREE SEEDLINGS",
-
     "+20 FREE SEEDLINGS",
-
     "+20 FREE SEEDLINGS",
-
     "+30 FREE SEEDLINGS",
-
     "+30 FREE SEEDLINGS",
-
     "SPECIAL DISCOUNT"
-
 ],
-
 
 lucky: [
-
     "+30 FREE SEEDLINGS",
-
     "+30 FREE SEEDLINGS",
-
     "+40 FREE SEEDLINGS",
-
     "+40 FREE SEEDLINGS",
-
     "+40 FREE SEEDLINGS",
-
     "+50 FREE SEEDLINGS",
-
     "+50 FREE SEEDLINGS",
-
     "SPECIAL DISCOUNT"
-
 ],
-
 
 great: [
-
     "+40 FREE SEEDLINGS",
-
     "+40 FREE SEEDLINGS",
-
     "+50 FREE SEEDLINGS",
-
     "+50 FREE SEEDLINGS",
-
     "+50 FREE SEEDLINGS",
-
     "+60 FREE SEEDLINGS",
-
     "+60 FREE SEEDLINGS",
-
     "SPECIAL DISCOUNT"
-
 ],
-
 
 super: [
-
     "+150 FREE SEEDLINGS",
-
     "+150 FREE SEEDLINGS",
-
     "+200 FREE SEEDLINGS",
-
     "+200 FREE SEEDLINGS",
-
     "+200 FREE SEEDLINGS",
-
     "+250 FREE SEEDLINGS",
-
     "+250 FREE SEEDLINGS",
-
     "SPECIAL DISCOUNT"
-
 ],
 
-
 mega: [
-
     "+300 FREE SEEDLINGS",
-
     "+300 FREE SEEDLINGS",
-
     "+300 FREE SEEDLINGS",
-
     "+400 FREE SEEDLINGS",
-
     "+400 FREE SEEDLINGS",
-
     "+450 FREE SEEDLINGS",
-
     "+500 FREE SEEDLINGS",
-
     "SPECIAL DISCOUNT"
-
 ]
 
 };
@@ -699,23 +372,14 @@ mega: [
 ========================================= */
 
 const colors = [
-
-"#e63946",
-
-"#f1c40f",
-
-"#2a9d8f",
-
-"#457b9d",
-
-"#e76f51",
-
-"#9b5de5",
-
-"#06d6a0",
-
-"#f4a261"
-
+    "#e63946",
+    "#f1c40f",
+    "#2a9d8f",
+    "#457b9d",
+    "#e76f51",
+    "#9b5de5",
+    "#06d6a0",
+    "#f4a261"
 ];
 
 
@@ -738,10 +402,8 @@ function startAudio() {
 
     }
 
-
     if (
-        audioContext.state ===
-        "suspended"
+        audioContext.state === "suspended"
     ) {
 
         audioContext.resume();
@@ -755,47 +417,29 @@ function tickSound() {
 
     startAudio();
 
-
     const oscillator =
         audioContext.createOscillator();
-
 
     const gain =
         audioContext.createGain();
 
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
 
-    oscillator.connect(
-        gain
-    );
-
-
-    gain.connect(
-        audioContext.destination
-    );
-
-
-    oscillator.type =
-        "square";
-
-
-    oscillator.frequency.value =
-        1100;
-
+    oscillator.type = "square";
+    oscillator.frequency.value = 1100;
 
     gain.gain.setValueAtTime(
         0.07,
         audioContext.currentTime
     );
 
-
     gain.gain.exponentialRampToValueAtTime(
         0.001,
         audioContext.currentTime + 0.06
     );
 
-
     oscillator.start();
-
 
     oscillator.stop(
         audioContext.currentTime + 0.06
@@ -808,55 +452,38 @@ function winSound() {
 
     startAudio();
 
-
     const oscillator =
         audioContext.createOscillator();
-
 
     const gain =
         audioContext.createGain();
 
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
 
-    oscillator.connect(
-        gain
-    );
-
-
-    gain.connect(
-        audioContext.destination
-    );
-
-
-    oscillator.type =
-        "sine";
-
+    oscillator.type = "sine";
 
     oscillator.frequency.setValueAtTime(
         520,
         audioContext.currentTime
     );
 
-
     oscillator.frequency.exponentialRampToValueAtTime(
         1040,
         audioContext.currentTime + 0.18
     );
-
 
     gain.gain.setValueAtTime(
         0.15,
         audioContext.currentTime
     );
 
-
     gain.gain.exponentialRampToValueAtTime(
         0.001,
         audioContext.currentTime + 0.5
     );
 
-
     oscillator.start();
-
 
     oscillator.stop(
         audioContext.currentTime + 0.5
@@ -866,7 +493,7 @@ function winSound() {
 
 
 /* =========================================
-   GOOGLE BACKEND REQUEST
+   BACKEND REQUEST
 ========================================= */
 
 function callBackend(
@@ -875,114 +502,75 @@ function callBackend(
     quantity
 ) {
 
-    return new Promise(
-        function(resolve) {
+    return new Promise(function(resolve) {
 
-            const callbackName =
-                "backendCallback_" +
-                Date.now() +
-                "_" +
-                Math.floor(
-                    Math.random() * 100000
-                );
-
-
-            const script =
-                document.createElement(
-                    "script"
-                );
-
-
-            let finished =
-                false;
-
-
-            window[callbackName] =
-                function(data) {
-
-                    if (finished) {
-                        return;
-                    }
-
-
-                    finished = true;
-
-
-                    delete window[
-                        callbackName
-                    ];
-
-
-                    script.remove();
-
-
-                    resolve(data);
-
-                };
-
-
-            const url =
-                API_URL +
-                "?action=" +
-                encodeURIComponent(
-                    action
-                ) +
-                "&code=" +
-                encodeURIComponent(
-                    code
-                ) +
-                "&quantity=" +
-                encodeURIComponent(
-                    quantity
-                ) +
-                "&callback=" +
-                encodeURIComponent(
-                    callbackName
-                );
-
-
-            script.src =
-                url;
-
-
-            script.onerror =
-                function() {
-
-                    if (finished) {
-                        return;
-                    }
-
-
-                    finished = true;
-
-
-                    delete window[
-                        callbackName
-                    ];
-
-
-                    script.remove();
-
-
-                    resolve({
-
-                        success:
-                            false,
-
-                        message:
-                            "Unable to connect to Lucky Spin server."
-
-                    });
-
-                };
-
-
-            document.body.appendChild(
-                script
+        const callbackName =
+            "backendCallback_" +
+            Date.now() +
+            "_" +
+            Math.floor(
+                Math.random() * 100000
             );
 
-        }
-    );
+        const script =
+            document.createElement("script");
+
+        let finished = false;
+
+        window[callbackName] =
+            function(data) {
+
+                if (finished) {
+                    return;
+                }
+
+                finished = true;
+
+                delete window[callbackName];
+
+                script.remove();
+
+                resolve(data);
+
+            };
+
+        const url =
+            API_URL +
+            "?action=" +
+            encodeURIComponent(action) +
+            "&code=" +
+            encodeURIComponent(code) +
+            "&quantity=" +
+            encodeURIComponent(quantity) +
+            "&callback=" +
+            encodeURIComponent(callbackName);
+
+        script.src = url;
+
+        script.onerror =
+            function() {
+
+                if (finished) {
+                    return;
+                }
+
+                finished = true;
+
+                delete window[callbackName];
+
+                script.remove();
+
+                resolve({
+                    success: false,
+                    message:
+                        "Unable to connect to Lucky Spin server."
+                });
+
+            };
+
+        document.body.appendChild(script);
+
+    });
 
 }
 
@@ -991,98 +579,57 @@ function callBackend(
    SELECT PRIZE TIER
 ========================================= */
 
-function selectPrizeTier(
-    quantity
-) {
+function selectPrizeTier(quantity) {
 
-    if (
-        quantity >= 10000
-    ) {
+    if (quantity >= 10000) {
 
         return {
-
-            name:
-                "👑 MEGA LUCK",
-
-            prizes:
-                prizeTiers.mega
-
+            name: "👑 MEGA LUCK",
+            prizes: prizeTiers.mega
         };
 
     }
 
-
-    if (
-        quantity >= 5000
-    ) {
+    if (quantity >= 5000) {
 
         return {
-
-            name:
-                "🔥 SUPER LUCK",
-
-            prizes:
-                prizeTiers.super
-
+            name: "🔥 SUPER LUCK",
+            prizes: prizeTiers.super
         };
 
     }
 
-
-    if (
-        quantity >= 2000
-    ) {
+    if (quantity >= 2000) {
 
         return {
-
-            name:
-                "🌟 GREAT LUCK",
-
-            prizes:
-                prizeTiers.great
-
+            name: "🌟 GREAT LUCK",
+            prizes: prizeTiers.great
         };
 
     }
 
-
-    if (
-        quantity >= 1000
-    ) {
+    if (quantity >= 1000) {
 
         return {
-
-            name:
-                "⭐ LUCKY",
-
-            prizes:
-                prizeTiers.lucky
-
+            name: "⭐ LUCKY",
+            prizes: prizeTiers.lucky
         };
 
     }
-
 
     return {
-
-        name:
-            "🍀 STARTER LUCK",
-
-        prizes:
-            prizeTiers.starter
-
+        name: "🍀 STARTER LUCK",
+        prizes: prizeTiers.starter
     };
 
 }
 
 
 /* =========================================
-   DISPLAY TIER
+   TIER DISPLAY
 ========================================= */
 
-function updateTierDisplay(
-    quantity
-) {
+function updateTierDisplay(quantity) {
 
     if (
         !Number.isFinite(quantity) ||
@@ -1092,7 +639,6 @@ function updateTierDisplay(
         tierName.textContent =
             "🍀 STARTER LUCK";
 
-
         tierRewards.textContent =
             "Enter at least 500 seedlings to see your Lucky Spin range.";
 
@@ -1100,41 +646,27 @@ function updateTierDisplay(
 
     }
 
-
     const tier =
-        selectPrizeTier(
-            quantity
-        );
-
+        selectPrizeTier(quantity);
 
     tierName.textContent =
         tier.name;
 
-
     const rewardText =
         tier.prizes
-            .filter(
-                function(prize) {
+            .filter(function(prize) {
 
-                    return prize.includes(
-                        "FREE SEEDLINGS"
-                    );
+                return prize.includes(
+                    "FREE SEEDLINGS"
+                );
 
-                }
-            )
-            .filter(
-                function(value, index, array) {
+            })
+            .filter(function(value, index, array) {
 
-                    return array.indexOf(
-                        value
-                    ) === index;
+                return array.indexOf(value) === index;
 
-                }
-            )
-            .join(
-                " • "
-            );
-
+            })
+            .join(" • ");
 
     tierRewards.innerHTML =
         "🎁 Possible rewards:<br>" +
@@ -1144,7 +676,7 @@ function updateTierDisplay(
 
 
 /* =========================================
-   LIVE QUANTITY DISPLAY
+   LIVE QUANTITY
 ========================================= */
 
 quantityInput.addEventListener(
@@ -1152,43 +684,20 @@ quantityInput.addEventListener(
     function() {
 
         const quantity =
-            Number(
-                quantityInput.value
-            );
+            Number(quantityInput.value);
 
+        updateTierDisplay(quantity);
 
-        updateTierDisplay(
-            quantity
-        );
+        spinButton.disabled = true;
 
+        currentCode = "";
+        currentQuantity = 0;
+        prizes = [];
 
-        /*
-         * A changed quantity means
-         * the previous check is no longer valid.
-         */
+        result.textContent = "";
+        spinInfo.textContent = "";
 
-        spinButton.disabled =
-            true;
-
-
-        currentCode =
-            "";
-
-        currentQuantity =
-            0;
-
-        prizes =
-            [];
-
-
-        result.textContent =
-            "";
-
-        spinInfo.textContent =
-            "";
-
-        checkButton.disabled =
-            false;
+        checkButton.disabled = false;
 
     }
 );
@@ -1200,19 +709,13 @@ quantityInput.addEventListener(
 
 function drawWheel() {
 
-    if (
-        !prizes.length
-    ) {
-
+    if (!prizes.length) {
         return;
-
     }
-
 
     const slice =
         (2 * Math.PI) /
         prizes.length;
-
 
     ctx.clearRect(
         0,
@@ -1220,7 +723,6 @@ function drawWheel() {
         400,
         400
     );
-
 
     for (
         let i = 0;
@@ -1232,20 +734,16 @@ function drawWheel() {
             currentRotation +
             i * slice;
 
-
         const endAngle =
             startAngle +
             slice;
 
-
         ctx.beginPath();
-
 
         ctx.moveTo(
             center,
             center
         );
-
 
         ctx.arc(
             center,
@@ -1255,50 +753,35 @@ function drawWheel() {
             endAngle
         );
 
-
         ctx.closePath();
-
 
         ctx.fillStyle =
             colors[i];
 
-
         ctx.fill();
-
 
         ctx.strokeStyle =
             "white";
 
-
-        ctx.lineWidth =
-            3;
-
+        ctx.lineWidth = 3;
 
         ctx.stroke();
 
-
         ctx.save();
-
 
         ctx.translate(
             center,
             center
         );
 
-
         ctx.rotate(
             startAngle +
             slice / 2
         );
 
+        ctx.textAlign = "right";
 
-        ctx.textAlign =
-            "right";
-
-
-        ctx.fillStyle =
-            "white";
-
+        ctx.fillStyle = "white";
 
         if (
             prizes[i].includes(
@@ -1308,19 +791,14 @@ function drawWheel() {
 
             const amount =
                 prizes[i]
-                    .replace(
-                        "+",
-                        ""
-                    )
+                    .replace("+", "")
                     .replace(
                         " FREE SEEDLINGS",
                         ""
                     );
 
-
             ctx.font =
                 "bold 16px Arial";
-
 
             ctx.fillText(
                 "+" + amount,
@@ -1328,10 +806,8 @@ function drawWheel() {
                 -5
             );
 
-
             ctx.font =
                 "bold 13px Arial";
-
 
             ctx.fillText(
                 "FREE SEEDLINGS",
@@ -1339,20 +815,16 @@ function drawWheel() {
                 10
             );
 
-        }
-
-        else {
+        } else {
 
             ctx.font =
                 "bold 16px Arial";
-
 
             ctx.fillText(
                 "SPECIAL",
                 radius - 15,
                 -5
             );
-
 
             ctx.fillText(
                 "DISCOUNT",
@@ -1361,7 +833,6 @@ function drawWheel() {
             );
 
         }
-
 
         ctx.restore();
 
@@ -1383,51 +854,37 @@ checkButton.addEventListener(
                 .trim()
                 .toUpperCase();
 
-
         const quantity =
             Number(
                 quantityInput.value
             );
 
+        spinButton.disabled = true;
 
-        spinButton.disabled =
-            true;
-
-
-        result.textContent =
-            "";
-
+        result.textContent = "";
 
         if (
-            !/^AS-\d{3,}$/.test(
-                code
-            )
+            !/^AS-\d{3,}$/.test(code)
         ) {
 
             spinInfo.textContent =
                 "⚠️ Enter a valid Lucky Code.";
 
-
             return;
 
         }
 
-
         if (
-            !Number.isFinite(
-                quantity
-            ) ||
+            !Number.isFinite(quantity) ||
             quantity < 500
         ) {
 
             spinInfo.textContent =
                 "⚠️ Minimum order is 500 seedlings.";
 
-
             return;
 
         }
-
 
         if (
             quantity % 500 !== 0
@@ -1436,19 +893,14 @@ checkButton.addEventListener(
             spinInfo.textContent =
                 "⚠️ Order quantity must be in increments of 500.";
 
-
             return;
 
         }
 
-
-        checkButton.disabled =
-            true;
-
+        checkButton.disabled = true;
 
         spinInfo.textContent =
             "🔐 Checking your Lucky Code...";
-
 
         const response =
             await callBackend(
@@ -1456,7 +908,6 @@ checkButton.addEventListener(
                 code,
                 quantity
             );
-
 
         if (
             !response ||
@@ -1474,36 +925,22 @@ checkButton.addEventListener(
                     "Unable to verify Lucky Code."
                 );
 
-
-            checkButton.disabled =
-                false;
-
+            checkButton.disabled = false;
 
             return;
 
         }
 
-
-        currentCode =
-            code;
-
-
-        currentQuantity =
-            quantity;
-
+        currentCode = code;
+        currentQuantity = quantity;
 
         const tier =
-            selectPrizeTier(
-                quantity
-            );
-
+            selectPrizeTier(quantity);
 
         prizes =
             tier.prizes;
 
-
         drawWheel();
-
 
         spinInfo.innerHTML =
             tier.name +
@@ -1511,13 +948,10 @@ checkButton.addEventListener(
             "🎡 Lucky Code accepted!<br>" +
             "You have <strong>1 SPIN</strong>.";
 
-
         result.textContent =
             "Good luck! 🌱";
 
-
-        spinButton.disabled =
-            false;
+        spinButton.disabled = false;
 
     }
 );
@@ -1531,14 +965,9 @@ spinButton.addEventListener(
     "click",
     async function() {
 
-        if (
-            spinning
-        ) {
-
+        if (spinning) {
             return;
-
         }
-
 
         if (
             !currentCode ||
@@ -1550,64 +979,39 @@ spinButton.addEventListener(
 
         }
 
+        spinning = true;
 
-        spinning =
-            true;
-
-
-        spinButton.disabled =
-            true;
-
-
-        checkButton.disabled =
-            true;
-
+        spinButton.disabled = true;
+        checkButton.disabled = true;
 
         startAudio();
-
 
         result.textContent =
             "🎡 Preparing your spin...";
 
-
         spinInfo.textContent =
             "🔐 Securing your Lucky Code...";
 
-
         /*
-         * IMPORTANT:
-         *
-         * The server decides the winning
-         * prize BEFORE the wheel animation.
-         *
-         * This prevents the browser from
-         * choosing a different prize.
+         * SERVER DECIDES THE WINNER
          */
 
         const response =
             await callBackend(
-                "use",
+                "prepare",
                 currentCode,
                 currentQuantity
             );
-
 
         if (
             !response ||
             !response.success
         ) {
 
-            spinning =
-                false;
+            spinning = false;
 
-
-            spinButton.disabled =
-                true;
-
-
-            checkButton.disabled =
-                false;
-
+            spinButton.disabled = true;
+            checkButton.disabled = false;
 
             spinInfo.innerHTML =
                 "❌ " +
@@ -1617,95 +1021,68 @@ spinButton.addEventListener(
                     ?
                     response.message
                     :
-                    "Unable to complete the spin."
+                    "Unable to prepare the spin."
                 );
 
-
-            result.textContent =
-                "";
-
+            result.textContent = "";
 
             return;
 
         }
-
-
-        /*
-         * Server-selected winner.
-         */
 
         const winner =
             Number(
                 response.winnerIndex
             );
 
-
         const winningPrize =
-            response.prize;
-
-
-        /*
-         * Safety check.
-         */
+            String(
+                response.prize || ""
+            );
 
         if (
-            !Number.isInteger(
-                winner
-            ) ||
+            !Number.isInteger(winner) ||
             winner < 0 ||
-            winner >= prizes.length
+            winner >= prizes.length ||
+            !winningPrize
         ) {
 
-            spinning =
-                false;
+            spinning = false;
 
+            spinButton.disabled = true;
 
             spinInfo.innerHTML =
-                "⚠️ Please contact Araucaria Seedlings Tagaytay.";
-
+                "⚠️ Invalid server response. Please contact Araucaria Seedlings Tagaytay.";
 
             return;
 
         }
 
-
         /*
-         * Start wheel animation.
+         * Start animation
          */
 
         result.textContent =
             "🎡 Spinning...";
 
-
         const slice =
             (2 * Math.PI) /
             prizes.length;
 
-
         const targetAngle =
-            (Math.PI * 3 / 2)
-            -
-            (
-                winner * slice
-            )
-            -
-            (
-                slice / 2
-            );
-
+            (Math.PI * 3 / 2) -
+            (winner * slice) -
+            (slice / 2);
 
         const startRotation =
             currentRotation;
 
-
         const extraSpins =
             18 * Math.PI;
-
 
         const normalizedStart =
             startRotation %
             (2 * Math.PI);
-
 
         const finalRotation =
             startRotation +
@@ -1715,18 +1092,14 @@ spinButton.addEventListener(
                 normalizedStart
             );
 
-
         const duration =
             10000;
-
 
         const startTime =
             performance.now();
 
-
         let lastTickAngle =
             currentRotation;
-
 
         function animate(time) {
 
@@ -1734,14 +1107,11 @@ spinButton.addEventListener(
                 time -
                 startTime;
 
-
             const progress =
                 Math.min(
-                    elapsed /
-                    duration,
+                    elapsed / duration,
                     1
                 );
-
 
             const ease =
                 1 -
@@ -1750,20 +1120,16 @@ spinButton.addEventListener(
                     5
                 );
 
-
             currentRotation =
                 startRotation +
                 (
                     finalRotation -
                     startRotation
-                ) *
-                ease;
-
+                ) * ease;
 
             const tickSpacing =
                 (2 * Math.PI) /
                 prizes.length;
-
 
             const tickDistance =
                 Math.abs(
@@ -1771,10 +1137,8 @@ spinButton.addEventListener(
                     lastTickAngle
                 );
 
-
             const finalPhase =
                 progress > 0.82;
-
 
             const currentTickSpacing =
                 finalPhase
@@ -1783,7 +1147,6 @@ spinButton.addEventListener(
                 :
                 tickSpacing;
 
-
             if (
                 tickDistance >=
                 currentTickSpacing
@@ -1791,15 +1154,12 @@ spinButton.addEventListener(
 
                 tickSound();
 
-
                 lastTickAngle =
                     currentRotation;
 
             }
 
-
             drawWheel();
-
 
             if (
                 progress < 1
@@ -1809,11 +1169,9 @@ spinButton.addEventListener(
                     animate
                 );
 
-            }
+            } else {
 
-            else {
-
-                finishSpin(
+                finalizeSpin(
                     winningPrize,
                     response.tier
                 );
@@ -1821,7 +1179,6 @@ spinButton.addEventListener(
             }
 
         }
-
 
         requestAnimationFrame(
             animate
@@ -1832,71 +1189,87 @@ spinButton.addEventListener(
 
 
 /* =========================================
-   FINISH SPIN
+   FINALIZE SPIN
 ========================================= */
 
-function finishSpin(
+async function finalizeSpin(
     winningPrize,
     tier
 ) {
 
     winSound();
 
-
     result.innerHTML =
         "🎉 YOU WON:<br><br>" +
         winningPrize;
 
+    spinInfo.innerHTML =
+        "🔐 Recording your result...";
+
+    /*
+     * SERVER FINALIZES THE SPIN
+     */
+
+    const response =
+        await callBackend(
+            "finalize",
+            currentCode,
+            currentQuantity
+        );
+
+    if (
+        !response ||
+        !response.success
+    ) {
+
+        spinning = false;
+
+        spinButton.disabled = true;
+
+        spinInfo.innerHTML =
+            "⚠️ Your prize is pending server confirmation.<br>" +
+            "Please contact Araucaria Seedlings Tagaytay.";
+
+        return;
+
+    }
+
+    /*
+     * FINAL SUCCESS
+     */
+
+    result.innerHTML =
+        "🎉 YOU WON:<br><br>" +
+        winningPrize +
+        "<br><br>" +
+        "🎟️ Code: " +
+        currentCode;
 
     spinInfo.innerHTML =
         "🔒 <strong>SPIN COMPLETE!</strong><br><br>" +
         "Your Lucky Code has been used.";
 
-
-    if (
-        tier
-    ) {
+    if (tier) {
 
         tierName.textContent =
             tier;
 
     }
 
-
     /*
-     * Permanently lock this page.
+     * Permanently lock this page
      */
 
-    currentCode =
-        "";
+    currentCode = "";
+    currentQuantity = 0;
+    prizes = [];
+    spinning = false;
 
+    spinButton.disabled = true;
 
-    currentQuantity =
-        0;
-
-
-    prizes =
-        [];
-
-
-    spinning =
-        false;
-
-
-    spinButton.disabled =
-        true;
-
-
-    luckyCodeInput.disabled =
-        true;
-
-
-    quantityInput.disabled =
-        true;
-
-
-    checkButton.disabled =
-        true;
+    luckyCodeInput.disabled = true;
+    quantityInput.disabled = true;
+    checkButton.disabled = true;
 
 }
 
@@ -1908,16 +1281,11 @@ function finishSpin(
 prizes =
 prizeTiers.starter;
 
-
 drawWheel();
 
-
-updateTierDisplay(
-    500
-);
+updateTierDisplay(500);
 
 </script>
-
 
 </body>
 
