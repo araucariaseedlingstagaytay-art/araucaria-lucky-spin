@@ -128,7 +128,7 @@ Enter the Lucky Code given to you by Araucaria Seedlings Tagaytay.
     type="text"
     id="luckyCode"
     placeholder="Example: AS-216"
-    maxlength="6"
+    maxlength="10"
     autocomplete="off"
 >
 
@@ -766,7 +766,7 @@ checkButton.addEventListener(
 
 
         if (
-            !/^AS-\d{3}$/.test(code)
+            /^AS-\d{3,}$/.test(code)
         ) {
 
             spinInfo.textContent =
