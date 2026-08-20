@@ -766,8 +766,8 @@ checkButton.addEventListener(
 
 
         if (
-            /^AS-\d{3,}$/.test(code)
-        ) {
+    !/^AS-\d{3,}$/.test(code)
+) {
 
             spinInfo.textContent =
                 "⚠️ Enter a valid Lucky Code.";
